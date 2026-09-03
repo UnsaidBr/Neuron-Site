@@ -1,0 +1,6 @@
+{
+  "name": "NEURON — Núcleo de Estudos de IA",
+  "description": "Plataforma oficial do NEURON: Núcleo de Estudos da UFLA dedicado a pesquisas de fronteira em inteligência artificial, robótica social teomórfica e tecnologia agroespacial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

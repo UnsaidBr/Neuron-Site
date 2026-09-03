@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-dark: #050505;
+    --brand-card: #0a0a0a;
+    --brand-surface: #111111;
+    --brand-magenta: #db2777;
+    --brand-purple: #7c3aed;
+    --brand-purple-light: #a78bfa;
+    --brand-purple-hover: #6d28d9;
+    --brand-amber: #f59e0b;
+    --brand-gold: #f6d88b;
+    --brand-emerald: #10b981;
+    --brand-cyan: #06b6d4;
+  }
+
+  body {
+    background-color: #050505;
+    color: #f3f4f6;
+    font-family: 'IBM Plex Sans', 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Immersive UI Background Grid Pattern (40px with 2% white opacity lines) */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Immersive Ambient Radial Gradients */
+.bg-immersive-glow {
+  background-image: 
+    radial-gradient(circle at 15% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(219, 39, 119, 0.1) 0%, transparent 40%);
+}
+
+/* Immersive UI Glass & Cards */
+.glass-panel {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-interactive {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-interactive:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.25);
+}
+
+/* Immersive UI Gradients & Text */
+.text-gradient-neuron {
+  color: #7c3aed;
+}
+
+.text-gradient-immersive {
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 60%, rgba(255, 255, 255, 0.4) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-amber {
+  background: linear-gradient(135deg, #fde68a 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Immersive UI Buttons */
+.btn-gradient {
+  background: #7c3aed;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+}
+
+.btn-gradient:hover {
+  background: #6d28d9;
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.45);
+}
+
+.btn-secondary-immersive {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.btn-secondary-immersive:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Shadow Glows */
+.shadow-glow-purple {
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.25);
+}
+
+.shadow-glow-magenta {
+  box-shadow: 0 0 25px rgba(219, 39, 119, 0.25);
+}
+
+.shadow-glow-amber {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.25);
+}
+
