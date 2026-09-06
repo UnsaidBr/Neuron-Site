@@ -16,7 +16,7 @@
   }
 
   body {
-    background-color: #050505;
+    background-color: #070510;
     color: #f3f4f6;
     font-family: 'IBM Plex Sans', 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
@@ -27,19 +27,56 @@
   }
 }
 
-/* Immersive UI Background Grid Pattern (40px with 2% white opacity lines) */
+/* Continuous Futuristic Cybernetic Grid Pattern */
 .bg-grid-pattern {
-  background-size: 40px 40px;
+  background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(167, 139, 250, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(167, 139, 250, 0.04) 1px, transparent 1px);
+}
+
+/* Secondary Micro-Nodes Dot Matrix */
+.bg-tech-dots {
+  background-size: 96px 96px;
+  background-image: radial-gradient(circle, rgba(124, 58, 237, 0.14) 1.5px, transparent 1.5px);
+}
+
+/* Ambient Pulsing Orbs */
+@keyframes ambient-pulse-slow {
+  0%, 100% {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.28;
+    transform: scale(1.06);
+  }
+}
+
+.animate-ambient-slow {
+  animation: ambient-pulse-slow 12s ease-in-out infinite;
+}
+
+@keyframes ambient-pulse-reverse {
+  0%, 100% {
+    opacity: 0.22;
+    transform: scale(1.04);
+  }
+  50% {
+    opacity: 0.14;
+    transform: scale(0.96);
+  }
+}
+
+.animate-ambient-reverse {
+  animation: ambient-pulse-reverse 15s ease-in-out infinite;
 }
 
 /* Immersive Ambient Radial Gradients */
 .bg-immersive-glow {
   background-image: 
-    radial-gradient(circle at 15% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 85% 70%, rgba(219, 39, 119, 0.1) 0%, transparent 40%);
+    radial-gradient(circle at 15% 30%, rgba(124, 58, 237, 0.2) 0%, transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(219, 39, 119, 0.15) 0%, transparent 45%);
 }
 
 /* Immersive UI Glass & Cards */

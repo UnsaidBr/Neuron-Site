@@ -1,6 +1,8 @@
 import React from 'react';
 import { PageTab } from '../types';
 import { ArrowUp, Instagram, Mail, MapPin } from 'lucide-react';
+import { NeuronLogo } from './NeuronLogo';
+import { NeuronBee } from './NeuronBee';
 
 interface FooterProps {
   onNavigateTab: (tab: PageTab) => void;
@@ -16,21 +18,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab, onOpenTraineeModa
     <footer className="border-t border-white/5 bg-black/60 backdrop-blur-lg py-16 text-white/50 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Col 1: Brand Info */}
+          {/* Col 1: Brand Info matching Frame 12 2 */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-6 h-6 bg-gradient-to-tr from-[#7C3AED] to-[#DB2777] rounded-sm rotate-45 flex items-center justify-center shrink-0">
-                <div className="w-3 h-3 bg-white rounded-full blur-[1px] opacity-80" />
-              </div>
-              <div>
-                <span className="font-bold text-lg text-white tracking-tight block leading-none">
-                  NEURON
-                </span>
-                <span className="text-[8px] font-semibold text-[#7C3AED] tracking-widest block uppercase mt-1">
-                  Núcleo de Estudos de IA • UFLA
-                </span>
-              </div>
-            </div>
+            <NeuronLogo variant="footer" />
 
             <p className="text-xs text-white/50 leading-relaxed max-w-sm font-light">
               Núcleo de excelência em inteligência artificial, robótica avançada e sistemas interativos no Departamento de Ciência da Computação da Universidade Federal de Lavras.
@@ -41,6 +31,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab, onOpenTraineeModa
               <span className="text-white/70 font-mono text-[11px]">
                 Pesquisa Aberta • Campus UFLA
               </span>
+            </div>
+
+            <div className="pt-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs">
+                <NeuronBee variant="micro" />
+                <span className="text-[11px] font-mono text-[#F59E0B]">
+                  A Colmeia: Inovação &amp; Swarm AI
+                </span>
+              </div>
             </div>
           </div>
 

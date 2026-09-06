@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { PageTab } from '../types';
 import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { NeuronLogo } from './NeuronLogo';
+import { NeuronBee } from './NeuronBee';
 
 interface NavbarProps {
   currentTab: PageTab;
@@ -32,23 +34,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-black/40 backdrop-blur-md transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo matching Immersive UI */}
+        {/* Brand Logo matching Frame 12 2.png */}
         <button
           onClick={() => handleNavClick('home')}
-          className="flex items-center gap-3 group text-left cursor-pointer focus:outline-none"
+          className="flex items-center group text-left cursor-pointer focus:outline-none"
           aria-label="Ir para a página inicial do NEURON"
         >
-          <div className="w-8 h-8 bg-gradient-to-tr from-[#7C3AED] to-[#DB2777] rounded-sm rotate-45 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-            <div className="w-4 h-4 bg-white rounded-full blur-[2px] opacity-80" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-tighter leading-none text-white">
-              NEURON
-            </span>
-            <span className="text-[9px] uppercase tracking-[0.2em] text-[#7C3AED] font-semibold mt-1">
-              Núcleo de Estudos de IA • UFLA
-            </span>
-          </div>
+          <NeuronLogo variant="navbar" />
         </button>
 
         {/* Desktop Navigation Links */}
@@ -75,10 +67,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center space-x-3">
           <button
             onClick={onOpenTraineeModal}
-            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-xs uppercase tracking-widest font-bold text-white bg-[#7C3AED] hover:bg-[#6D28D9] shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all cursor-pointer hover:scale-105"
+            className="hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2.5 rounded-lg text-xs uppercase tracking-widest font-bold text-white bg-[#7C3AED] hover:bg-[#6D28D9] shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all cursor-pointer hover:scale-105 group"
           >
-            <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[#F59E0B]" />
-            <span>Inscrições Abertas</span>
+            <NeuronBee variant="micro" className="mr-1.5 group-hover:rotate-12 transition-transform" />
+            <span>Colmeia Trainee</span>
             <ArrowRight className="w-3.5 h-3.5 ml-1.5 text-white/80" />
           </button>
 

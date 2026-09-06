@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TraineeApplication } from '../types';
 import { X, Sparkles, Send, CheckCircle2, ArrowRight } from 'lucide-react';
+import { NeuronBee } from './NeuronBee';
 
 interface TraineeModalProps {
   isOpen: boolean;
@@ -123,9 +124,15 @@ export const TraineeModal: React.FC<TraineeModalProps> = ({
             <div className="space-y-6">
               {/* Header */}
               <div>
-                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/30 text-[10px] font-mono text-[#A78BFA] uppercase tracking-widest font-bold mb-2">
-                  <Sparkles className="w-3 h-3 text-[#F59E0B]" />
-                  <span>CICLO DE NOVOS TALENTOS • 2025</span>
+                <div className="flex flex-wrap items-center gap-2.5 mb-2">
+                  <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/30 text-[10px] font-mono text-[#A78BFA] uppercase tracking-widest font-bold">
+                    <Sparkles className="w-3 h-3 text-[#F59E0B]" />
+                    <span>CICLO DE NOVOS TALENTOS • 2025</span>
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/20 text-[10px] font-mono text-[#F59E0B]">
+                    <NeuronBee variant="micro" />
+                    <span>A Colmeia NEURON</span>
+                  </div>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   {formData.type === 'trainee'

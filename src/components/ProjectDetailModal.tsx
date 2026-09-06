@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Project } from '../types';
 import { X, Globe, Calendar, Award, CheckCircle, Share2, Sparkles, FileText } from 'lucide-react';
+import { OptimizedImage } from './OptimizedImage';
 
 interface ProjectDetailModalProps {
   project: Project | null;
@@ -64,13 +65,17 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
           {/* Featured Image */}
           <div className="relative rounded-xl overflow-hidden aspect-video w-full bg-black/50 border border-white/10">
-            <img
+            <OptimizedImage
               src={project.image}
               alt={project.title}
+              width={900}
+              height={506}
+              priority={true}
+              aspectRatio="16/9"
+              sizes="(max-width: 768px) 100vw, 850px"
               className="w-full h-full object-cover object-center filter brightness-95"
-              referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-60 pointer-events-none" />
           </div>
 
           {/* Content Tabs / Sections */}
