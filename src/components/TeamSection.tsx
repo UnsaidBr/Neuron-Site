@@ -100,7 +100,7 @@ export const TeamSection: React.FC = () => {
                     <span>INFRAESTRUTURA DE PONTA</span>
                   </div>
                   <p className="text-xs sm:text-sm text-white/50 leading-relaxed font-light">
-                    Laboratório sediado no DCC/UFLA com bancadas de prototipagem rápida, cluster de inferência neural, drones industriais e estufas de teste biológico.
+                    Laboratório sediado no DCC/UFLA com bancadas de prototipagem rápida, cluster de inferência neural, estações de robótica social e estufas de teste biológico.
                   </p>
                 </div>
                 <span className="text-[11px] font-mono text-white/40 mt-4 pt-3 border-t border-white/5">

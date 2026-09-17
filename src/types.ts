@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: 'robotics' | 'agrospace' | 'vision' | 'llm' | 'deeptech';
+  category: 'robotics' | 'agrospace' | 'vision' | 'llm' | 'deeptech' | 'biomechanics';
   categoryLabel: string;
   tagCategory: string; // e.g. "05. EVENTO / PARTICIPAÇÃO"
   badge: string; // e.g. "UFLA • FAPESP"
@@ -47,6 +47,16 @@ export interface MetricItem {
   highlightColor?: string;
 }
 
+export interface ContactMessage {
+  name: string;
+  email: string;
+  institution?: string;
+  phone?: string;
+  subject: string;
+  topic: 'parceria' | 'extensao' | 'palestra' | 'duvida' | 'outro';
+  message: string;
+}
+
 export interface TraineeApplication {
   name: string;
   email: string;
@@ -58,4 +68,4 @@ export interface TraineeApplication {
   type: 'trainee' | 'partnership';
 }
 
-export type PageTab = 'home' | 'projetos' | 'pesquisa' | 'equipe' | 'brand';
+export type PageTab = 'home' | 'projetos' | 'contatos';

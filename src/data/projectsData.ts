@@ -1,4 +1,6 @@
 import { Project, MethodologyStage, MetricItem } from '../types';
+import llmCafeImage from '../assets/images/llm_cafe_project_1789673915971.jpg';
+import marchaPlusImage from '../assets/images/marcha_plus_project_1789673925406.jpg';
 
 export const HERO_SLIDES = [
   {
@@ -17,71 +19,69 @@ export const HERO_SLIDES = [
     pillDesc: 'Coreia-Reino Unido-Brasil',
   },
   {
-    id: 'agricultura-espacial',
-    category: 'Agro-Space Tech',
-    badge: 'EMBRAPA ESPAÇO',
-    title: 'O Brasil Vai Produzir Comida em Marte?',
+    id: 'llm-cafe',
+    category: 'IA Generativa & Cafeicultura',
+    badge: 'UFLA • POLO CAFEEIRO',
+    title: 'LLM Café: IA para a Cafeicultura',
     description:
-      'Tecnologias desenvolvidas para produzir alimentos em ambientes hostis: cultivo sem solo, irrigação otimizada por IA e modelos biológicos aplicados à nova economia espacial.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCRs8WBkfh2WJw6JeIXmC8V61922yvGt9sTVuF5OvEejf_WW93_BXO_LPtstZHQojYty4xVMisIjfFdyuZBWNcpmz7DhrW9mwEkAmrBgl0D8Eefw_PuLzvxeFUee9PwZoEFJrt_KIid1_icx_Perfd-afi608sMLJ148t0PAvxDNSEzXmWHCw4TxJh5oON9ofbAdRPiOVraTr8xesgtWeo4vFToPE9vtIN8WROhxAbV6kplHqeEZq5u1B8nVVsJl7EGCg',
+      'Modelo de linguagem especializado e arquitetura RAG alimentado pelo acervo agronômico da UFLA para diagnose fitossanitária, manejo de safra e extensão cafeeira.',
+    image: llmCafeImage,
     status: '● STATUS: EM PESQUISA',
-    highlight: 'BIO-ENGENHARIA ↗',
+    highlight: 'EXTENSÃO CAFEEIRA ↗',
     color: '#F59E0B',
-    pillTitle: 'Cultivo Extremo & Bioengenharia',
-    pillDesc: 'Embrapa • Pesquisa de Fronteira',
+    pillTitle: 'Modelos de Linguagem & Agro',
+    pillDesc: 'UFLA • Cooperativas do Sul de MG',
   },
   {
-    id: 'drones-clima',
-    category: 'Visão Autônoma',
-    badge: 'AGROTECH IA',
-    title: 'Laboratório Extremo: Drones & IA',
+    id: 'marcha-plus',
+    category: 'Visão & Biomecânica',
+    badge: 'SAÚDE & REABILITAÇÃO',
+    title: 'Marcha+: Biomecânica da Marcha',
     description:
-      'Drones de precisão integrando sensores inteligentes e visão computacional avançada para monitoramento em tempo real de lavouras e sustentabilidade na agricultura tropical.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAbDHX0JmswcLOCzLnzqltl3TBQRFVHUm9hFfq-617nHWZ_-eCplfDcAtzrM7KEHlHW-zW6ZSABSQvqu2eY3NbfVqc_3H3kxIu2BT27cA4JTwwMmpHbKHJ5joXczP50BF37fETFYKdpHgvGzB4mYfn0sm1MSLaARyBasBk-m_o_E8Idm81CNksAg2tZB48eD3ZVMNpVF0KV27IoKoqbJEGTzDOTjvWCeWedlBCxh1MLi56MAcuKrfWMzQbfze-F7r4uug',
+      'Visão computacional markerless e aprendizado profundo para análise cinemática precisa da marcha humana, diagnóstico motor e reabilitação postural acessível.',
+    image: marchaPlusImage,
     status: '● STATUS: EM TESTE',
-    highlight: 'UFLA AUTONOMOUS ↗',
+    highlight: 'BIOMECÂNICA IA ↗',
     color: '#06B6D4',
-    pillTitle: 'Visão Computacional & IA',
-    pillDesc: 'UFLA Autonomous Lab',
+    pillTitle: 'Visão Computacional & Saúde',
+    pillDesc: 'NEURON • DCC/UFLA',
   },
 ];
 
 export const METRICS: MetricItem[] = [
   {
-    value: '+9',
-    label: 'Projetos Ativos',
-    description: 'Conectando tecnologia, ciência e impacto social.',
+    value: '03',
+    label: 'Projetos Estruturantes',
+    description: 'Buda, LLM Café e Marcha+ conectando ciência de ponta e sociedade.',
     highlightColor: 'from-[#F6D88B] via-[#D91B7D] to-[#8435FF]',
+  },
+  {
+    value: '100%',
+    label: 'Tecnologia Aplicada',
+    description: 'Hardware, robôs e IA funcionando fora das quatro paredes.',
+    highlightColor: 'text-[#06B6D4]',
   },
   {
     value: '04+',
     label: 'Centros Globais',
-    description: 'Colaborações entre Brasil, Coreia, Reino Unido e Canadá.',
+    description: 'Cooperação com Coreia do Sul, Reino Unido e Canadá.',
     highlightColor: 'text-[#F6D88B]',
   },
   {
-    value: '100%',
-    label: 'Pesquisa Aplicada',
-    description: 'Agricultura espacial, robótica social e visão computacional.',
-    highlightColor: 'text-[#06B6D4]',
-  },
-  {
     value: 'UFLA',
-    label: 'Liderança Tecnológica',
-    description: 'Destaques frequentes na Agência FAPESP e mídias científicas.',
+    label: 'Impacto Universitário',
+    description: 'Extensão contínua do Departamento de Ciência da Computação.',
     highlightColor: 'text-[#10B981]',
   },
 ];
 
 export const FLAGSHIP_PROJECT: Project = {
   id: 'flagship-robo-budista',
-  title: 'Robô Budista Interativo para o Museu Nacional da Coreia do Sul',
-  subtitle: 'Estátuas interativas teomórficas com IA musical e gestos de empatia natural',
+  title: 'Robô Budista Interativo (Estátuas Budistas)',
+  subtitle: 'Estátuas interativas teomórficas com IA musical e gestos de empatia natural para o Museu Nacional da Coreia do Sul',
   category: 'robotics',
   categoryLabel: 'Robótica Teomórfica & IA Social',
-  tagCategory: '05. EVENTO / PARTICIPAÇÃO',
+  tagCategory: '01. ROBÓTICA & HRI',
   badge: 'UFLA • FAPESP',
   description:
     'Desenvolvimento interdisciplinar pioneiro concebido no NEURON que combina robótica humanoide teomórfica, IA musical generativa e gestos de empatia calibrados milimetricamente. A obra possibilita experiências culturais e contemplativas imersivas para visitantes internacionais no coração de Seul.',
@@ -89,7 +89,7 @@ export const FLAGSHIP_PROJECT: Project = {
     'https://lh3.googleusercontent.com/aida-public/AB6AXuDBnZ1zvVzyY1EZzApptjsn2gEkKZP92b22ZqWBHBMlM6hQ94YsO0C6gNJDSZi2LuTw05Q-gaFZokULW-jfWUNX8D0NQkedEaKaFpHeMpn1dbGz2Mig4KiZqHNhiIkd1fQsNaFvJe8bb6qPtlcjc8wKx24qdc3hL0AHFOb7NTx05O74K13oFl1OUrbZVjsplEpG-sa9Y62tTaPWDoc2SDPJ2Jl2ZbuqtiMIqQI7o8Wujc1y5WBOdFI2K09BpKtu-QHzYA',
   status: 'Em Operação',
   featured: true,
-  tags: ['#RobóticaSocial', '#IA_Interativa', '#CoreiaDoSul', '#HRI', '#Teomorfismo'],
+  tags: ['#RobôBudista', '#IA_Interativa', '#CoreiaDoSul', '#HRI', '#Teomorfismo'],
   partners: ['UFLA (Brasil)', 'FAPESP Parcerias', 'Hongik University (Coreia do Sul)', 'Ontario Tech (Canadá)', 'Heriot-Watt University (Escócia)'],
   institutions: 'Universidade Federal de Lavras • Museu Nacional da Coreia do Sul • FAPESP',
   problem:
@@ -120,206 +120,86 @@ export const FLAGSHIP_PROJECT: Project = {
   },
 };
 
+export const LLM_CAFE_PROJECT: Project = {
+  id: 'llm-cafe',
+  title: 'LLM Café: Inteligência Artificial Generativa para a Cafeicultura',
+  subtitle: 'Modelo de linguagem especializado e RAG para assistência técnica agronômica, diagnose e extensão cafeeira',
+  category: 'llm',
+  categoryLabel: 'Modelos de Linguagem & Agronomia',
+  tagCategory: '02. IA GENERATIVA & AGRO',
+  badge: 'UFLA • POLO CAFEEIRO',
+  description:
+    'Modelo de linguagem (LLM) fine-tuned com arquitetura Retrieval-Augmented Generation (RAG) treinado no acervo científico e agronômico da UFLA e da cafeicultura brasileira. Oferece suporte inteligente em tempo real a cafeicultores, cooperativas e agrônomos na diagnose de pragas, manejo pós-colheita, classificação sensorial e sustentabilidade do café.',
+  image: llmCafeImage,
+  status: 'Em Pesquisa',
+  tags: ['#LLMCafé', '#IAGenerativa', '#RAG', '#CafeiculturaUFLA', '#AgroTech'],
+  partners: ['UFLA Departamento de Ciência da Computação', 'Cooperativas do Sul de Minas', 'Pesquisadores de Cafeicultura'],
+  institutions: 'UFLA • DCC • Cooperativas Cafeeiras de Minas Gerais',
+  problem:
+    'Produtores rurais e cooperativas enfrentam dúvidas críticas de manejo, diagnose de ferrugem e bicho-mineiro e adequação fitossanitária sem acesso contínuo a especialistas em momentos de tomada de decisão imediata no campo.',
+  hypothesis:
+    'Um modelo de linguagem corporificado alimentado por RAG sobre o histórico de pesquisas cafeeiras da UFLA e boletins agronômicos regionais alcança respostas assertivas e fundamentadas cientificamente em linguagem simples para o produtor.',
+  methodology:
+    'Curadoria de corpus técnico multilíngue de mais de 15.000 publicações científicas de cafeicultura, indexação em banco vetorial de alta dimensionalidade, alinhamento conversacional com agrônomos e validação em campo com cooperados.',
+  techStack: [
+    'Fine-Tuning de LLMs Abertos (Llama / Mistral)',
+    'RAG com Embeddings Vetoriais Especializados',
+    'Banco Vetorial & Grafo de Conhecimento Agronômico',
+    'FastAPI & Inferência Otimizada em GPU',
+    'Interface Responsiva Mobile para o Campo',
+  ],
+  results:
+    'Mais de 15.000 publicações cafeeiras indexadas com índice de precisão em diagnose e recomendações de manejo de 95,2% validado por corpo docente da UFLA.',
+  timeline: '2024 - 2026 (Piloto com Cooperativas)',
+  specs: {
+    'Base de Conhecimento': '15.000+ publicações e teses da UFLA',
+    'Acurácia Técnica': '95,2% validada por agrônomos',
+    'Tempo Médio de Resposta': '< 400 ms em linguagem natural',
+  },
+};
+
+export const MARCHA_PLUS_PROJECT: Project = {
+  id: 'marcha-plus',
+  title: 'Marcha+: Visão Computacional e Biomecânica da Marcha',
+  subtitle: 'Sistema inteligente de análise cinemática de marcha para reabilitação motora e avaliação postural',
+  category: 'biomechanics',
+  categoryLabel: 'Visão Computacional & Biomecânica',
+  tagCategory: '03. BIOMECÂNICA & SAÚDE',
+  badge: 'UFLA • VISÃO & SAÚDE',
+  description:
+    'Plataforma inovadora concebida no NEURON combinando visão computacional markerless (sem marcadores físicos reflexivos), aprendizado profundo e modelos biomecânicos para análise cinemática precisa da marcha humana, auxiliando no diagnóstico precoce de distúrbios motores e reabilitação fisioterapêutica acessível.',
+  image: marchaPlusImage,
+  status: 'Em Teste',
+  tags: ['#MarchaPlus', '#VisãoComputacional', '#Biomecânica', '#SaúdeDigital', '#Cinemática'],
+  partners: ['NEURON Lab (DCC/UFLA)', 'Clínicas Escola de Fisioterapia', 'Hospitais Regionais'],
+  institutions: 'Universidade Federal de Lavras • DCC • Centros de Saúde',
+  problem:
+    'Os sistemas laboratoriais padrão-ouro de análise tridimensional de marcha exigem salas dedicadas de alto custo, múltiplos marcadores físicos aderidos ao paciente e horas de processamento manual, inviabilizando o acesso no SUS e clínicas comunitárias.',
+  hypothesis:
+    'Redes neurais convolucionais e transformers para estimativa de pose 3D em vídeo convencional, aliadas à cinemática inversa, conseguem calcular cadência, simetria, velocidade angular e ângulos de flexão com acurácia clínica equivalente a sistemas de alto custo.',
+  methodology:
+    'Pipeline de captura por vídeo monocanal e multicâmera sem marcadores, detecção em tempo real de landmarks anatômicos com compensação de oclusão e cálculo automático dos relatórios de parâmetros de marcha (gait analysis).',
+  techStack: [
+    'Markerless 3D Pose Estimation',
+    'PyTorch & MediaPipe Kinematics',
+    'OpenCV Video Processing Pipeline',
+    'Cálculo Cinemático de Ângulos Articulares',
+    'Dashboard de Relatórios Clínicos para Fisioterapeutas',
+  ],
+  results:
+    'Correlação de 96,8% nos parâmetros angulares em relação aos sistemas ópticos tradicionais de laboratório, reduzindo o tempo de protocolo de avaliação de 2 horas para 5 minutos.',
+  timeline: '2024 - 2026 (Extensão Clínica e Validação)',
+  specs: {
+    'Método de Rastreamento': 'Markerless (sem marcadores)',
+    'Precisão Cinemática': 'Erro médio < 1,8° articulares',
+    'Tempo de Processamento': 'Relatório gerado em 3 minutos',
+  },
+};
+
 export const PROJECTS_LIST: Project[] = [
   FLAGSHIP_PROJECT,
-  {
-    id: 'agricultura-espacial-marte',
-    title: 'O Brasil Vai Produzir Comida em Marte? (Estufas Espaciais)',
-    subtitle: 'Cultivo sem solo, fotossíntese artificial e irrigação otimizada por IA',
-    category: 'agrospace',
-    categoryLabel: 'Agricultura Espacial & Bio-Engenharia',
-    tagCategory: '03. PERGUNTA / GATILHO',
-    badge: 'AGRO-SPACE • EMBRAPA',
-    description:
-      'Adaptação do conhecimento agronômico tropical da UFLA para ambientes espaciais controlados. Modelos de IA preditivos para mitigar estresse hídrico e controlar iluminação artificial de espectro fino em estufas herméticas.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBkzWS5ymhmMJctUtpJioUDBVW_YTpwMooLLbmtGYgW3ONOSTg1KA746P9PYQHoBu8_nPNGQeLwnzHyGhcU0QY2bGR_8rCAtnC7aTkWznTLNb9UCqj-hv0ePAp6pwOJOgmU1W5CODn_W1C1zLrmsdB7r9U0TDdtFHEWARlgkfOabnzOerb1Q5WmWP4EDtAlY4DW9T3JxfNYfgZiFTTTIgBPafrcHeK-Xm_3rLQ697a5QBadPuo08cknlKU5pNjOQ_LqKQ',
-    status: 'Em Pesquisa',
-    tags: ['#AgriculturaEspacial', '#Embrapa', '#IrrigaçãoIA', '#BioEngenharia'],
-    partners: ['UFLA Laboratório Extremo', 'Embrapa Espaço', 'Centros de Bio-Engenharia'],
-    institutions: 'UFLA • Embrapa • Agência Espacial Brasileira',
-    problem:
-      'Viabilizar a produção autossustentável de biomassa comestível em ambientes extremos e pressurizados fora da Terra, com recursos hídricos e energéticos severamente restritos.',
-    hypothesis:
-      'Modelos neurais que aprendem a dinâmica de transpiração celular vegetal conseguem calibrar a mistura de nutrientes e espectro luminoso hora a hora, reduzindo em 40% a demanda energética.',
-    methodology:
-      'Câmaras hiperbáricas e hidropônicas equipadas com espectrômetros UV-VIS e sensores de umidade capacitivos integrados a controladores em malha fechada.',
-    techStack: [
-      'Modelos Preditivos de Biomassa (Python / Scikit-learn)',
-      'Controle IoT ESP32 Industrial',
-      'Sensores Hiperespectrais',
-      'Algoritmos de Otimização de Fotoperíodo',
-    ],
-    results:
-      'Redução comprovada de 38% no consumo de água em ciclos de 45 dias com variedades selecionadas de microvegetais e folhosas.',
-    timeline: '2024 - 2026',
-    specs: {
-      'Ambiente': 'Câmara pressurizada controlada',
-      'Eficiência Hídrica': '+38% vs estufa tradicional',
-      'Monitoramento': 'Rede IoT em malha fechada',
-    },
-  },
-  {
-    id: 'drones-clima-extremo',
-    title: 'Laboratório Extremo: Drones e Sensores contra Clima Severo',
-    subtitle: 'Algoritmos neurais embarcados em drones autônomos para predição agroclimática',
-    category: 'vision',
-    categoryLabel: 'Visão Computacional & Drones',
-    tagCategory: '06. CURIOSIDADE / TECNOLOGIA',
-    badge: 'VISÃO COMPUTACIONAL • AUTONOMIA',
-    description:
-      'Algoritmos neurais embarcados em drones autônomos para prever secas repentinas, geadas e otimizar a aplicação de bio-insumos em tempo real, transpondo tecnologia orbital para o agronegócio de precisão.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuC1XkoOnZnWIGVVlp_Thxc3QhXu1muvpKF0YUrazAMW4iaZpe4qWQoSp08dPWI7wT2VSY_K4i8hRAwNeF2NczDZ_vPA64hQprZc872o9shAJvNUX5ogqhKlx50bdDib3Hp7xR9M-qnMt4AJmbDinzb3AUh9gYkRNC9zRSvHuCu2yTjwfL4jhBjoHn7acdk6nzZ3CKQbwVvXGi3eEpMbse2I34d5gnGpaU3TdAXWvH-BCGMrDiZXhshzzSuh2cHj5BdKcg',
-    status: 'Em Teste',
-    tags: ['#DronesIA', '#SensoresPreditivos', '#UFLALab', '#VisãoAutônoma'],
-    partners: ['UFLA Autonomous Lab', 'Cooperativas Agrícolas do Sul de MG'],
-    institutions: 'UFLA Departamento de Ciência da Computação',
-    problem:
-      'A variabilidade climática extrema causa perdas milionárias em safras sem que produtores consigam prever estresses hídricos antes da necrose visível das plantas.',
-    hypothesis:
-      'Câmeras multiespectrais operadas por drones com rotas autônomas e segmentação semântica em tempo real identificam anomalias fisiológicas com 5 dias de antecedência.',
-    methodology:
-      'Voo em malha automatizada com georreferenciamento RTK, inferência convolucional rápida embarcada para geração imediata de mapas de vigor (NDVI e NDRE).',
-    techStack: [
-      'YOLOv10 & SegNet embarcadas',
-      'Pixhawk / PX4 Autopilot',
-      'Geolocalização RTK centimétrica',
-      'Pipeline de Processamento Cloud Edge',
-    ],
-    results:
-      'Mais de 2.000 hectares voados com índice de detecção precoce de pragas e estresse de 93,4%.',
-    timeline: '2024 - 2025',
-    specs: {
-      'Autonomia de Voo': '38 minutos por bateria',
-      'Resolução Espacial': '1,2 cm/pixel',
-      'Tempo de Inferência': '18 ms por frame',
-    },
-  },
-  {
-    id: 'robotica-social-arte',
-    title: 'Robótica + Inteligência Artificial + Arte Budista',
-    subtitle: 'Modelagem cinemática de microgestos e expressões humanizadas acolhedoras',
-    category: 'robotics',
-    categoryLabel: 'Robótica Social & Teomórfica',
-    tagCategory: '06. CURIOSIDADE / TECNOLOGIA',
-    badge: 'ROBÓTICA SOCIAL • ARTE & IA',
-    description:
-      'Você sabia? Robôs teomórficos e assistivos são modelados para simular microgestos e expressões humanas que quebram barreiras comunicativas, viabilizando interações empáticas e acolhedoras em saúde, museus e educação inclusiva.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBbuiVnuEE_PF8O2ZISlbEM4MYK9pXVpwSPB9e548sfe04LVj9q1V7d-Zjk4JADpCiGSbIBf1KFW0xFX0YHJ3popwr3vB5PGK-r4n3glFi2dC_iqZW8FN1kgKtLUGduevOkq8jjOMG71HlhC4a_WejGTPFuzT8riKhPV4wzyuKEqRJip5HHoworlFAC6VgxRbKUzCr2kIzyQX6QynI1brErS8R4CxOYxNyWhQy94SqYbgaUjYcI7gxVRXAJjwrPIB0T3g',
-    status: 'Em Operação',
-    tags: ['#RobóticaSocial', '#HRI', '#Teomorfismo', '#Cognição'],
-    partners: ['UFLA Lab', 'Museus Parceiros', 'Instituto de Cognição Humana'],
-    institutions: 'UFLA • Consórcios Culturais Internacionais',
-    problem:
-      'Robôs convencionais geram o efeito "vale da estranheza" (uncanny valley), provocando desconforto e rejeição inicial por parte de humanos.',
-    hypothesis:
-      'Inspirar movimentos em padrões teomórficos e contemplativos reduz o estresse do observador e estimula o engajamento emocional respeitoso.',
-    methodology:
-      'Análise biomecânica de gestos rituais tradicionais combinada com atuadores silenciosos e algoritmos de gaze-tracking que evitam contato visual agressivo.',
-    techStack: ['Python ROS', 'Dynamixel Servos', 'Facial Landmark Detection', 'Inverse Kinematics'],
-    results:
-      'Taxa de aceitação positiva de 97% em testes com públicos multigeracionais.',
-    timeline: '2023 - 2025',
-    specs: {
-      'Graus de Liberdade': '18 DOF na cabeça e tronco',
-      'Ruído Operacional': '< 28 dB',
-    },
-  },
-  {
-    id: 'ciencia-computacao-sem-fronteiras',
-    title: 'Ciência da Computação Sem Fronteiras (Hongik Univ & Ontario Tech)',
-    subtitle: 'Intercâmbio e cooperação transfronteiriça com instituições do Canadá e Ásia',
-    category: 'llm',
-    categoryLabel: 'Modelos de Linguagem & HRI',
-    tagCategory: '04. PROJETO APRESENTAÇÃO',
-    badge: 'INTERCÂMBIO • REDE GLOBAL',
-    description:
-      'Pesquisadores em nível de graduação e pós-graduação investigando arquiteturas de Large Language Models aplicadas a agentes conversacionais corporificados e interfaces cérebro-computador não invasivas.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAdjXrjSirXGAIOTJhWac2lCW8Ke0iA_4SPaTxPUi67JZK34jHlZNVU1c58lTuOXmtFBsDK0JAmzn14GQTVLuHs3Hx3H15KCvfvVJRhHY_XPPWh-TAfCVtVtdCClfw2-vKvm77d4RF9AZHa1ZeVbxlV1kktHOLo4hC1N-LP_C5nPh8VDBIpiG5DFEkclGCp6QC0LBl7icfIs807Yh2o_4HFFVEipwwwB2mO2ZmHphyi_rDrw9k2R-DCCtU3LeFWdtibsA',
-    status: 'Publicado',
-    tags: ['#Hongik', '#OntarioTech', '#LLMs', '#RedeGlobal'],
-    partners: ['UFLA (Brasil)', 'Hongik University (Coreia)', 'Ontario Tech (Canadá)'],
-    institutions: 'UFLA • Hongik University • Ontario Tech University',
-    problem:
-      'Modelos conversacionais comumente carecem de contextualização cultural e espacial quando instalados em agentes físicos interativos.',
-    hypothesis:
-      'Arquiteturas RAG ancoradas em grafos de conhecimento locais aumentam a precisão e coerência cultural do agente em 75%.',
-    methodology:
-      'Implementação de pipelines multilíngues com ancoragem em fontes historiográficas e curadoria bilíngue (Português, Coreano e Inglês).',
-    techStack: ['LangChain', 'Llama / Mistral Fine-tuned', 'Graph Database (Neo4j)', 'Vector Embeddings'],
-    results:
-      'Convênio acadêmico plurianual firmado e 3 artigos apresentados em conferências A1 da CAPES.',
-    timeline: '2024 - 2027',
-    specs: {
-      'Idiomas Suportados': 'Português, Coreano, Inglês',
-      'Latência de Resposta': '< 450 ms',
-    },
-  },
-  {
-    id: 'economia-orbital-deeptech',
-    title: 'Salto de US$ 5 bi para US$ 13 bi até 2032 na Economia Orbital',
-    subtitle: 'Estudo econométrico de mercado e posições estratégicas da deep tech brasileira',
-    category: 'deeptech',
-    categoryLabel: 'Macroeconomia • Deep Tech',
-    tagCategory: '02. CONTEÚDO INFO',
-    badge: 'MACROECONOMIA • DEEP TECH',
-    description:
-      'Estudo econométrico embasado em dados da McKinsey e Space Foundation demonstrando como os biomas e a infraestrutura científica brasileira podem liderar a cadeia global de exploração agroespacial.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAFTqBsmJzLGD4BgkNNk3YvwIKdzTiiAkQoPkNQkcwAcvq7Jkp6VKOmqXYF6FcOv1UCcodx-FxqDquGy1qsL6mglv2hDVaYtcFRgfUNN1oweezfVv9_OEOVQe0JNfbyjSqKpSIjjbWZFZjhH4BBWWjq8bvUVuOFUJtg8uIXmVphwjcNj9rDbwjqPM_ikmCAycN3YNbcDiNQ7kur23lJLr55FH6lcOvUj1jf_VE0jWJ8Jpo3YGWc8qxyQiZ0-CQVOHXJ2Q',
-    status: 'Publicado',
-    tags: ['#EconomiaEspacial', '#McKinseyData', '#OrbitalAgro', '#DeepTech'],
-    partners: ['Space Foundation Data', 'Observatório UFLA de Inovação'],
-    institutions: 'UFLA • Núcleo de Economia da Inovação',
-    problem:
-      'O ecossistema latino-americano de inovação corre o risco de ficar alheio à expansão exponencial da economia orbital sem um plano estratégico de capacitação técnica.',
-    hypothesis:
-      'A especialização em agricultura extrema e biotecnologia tropical concede ao Brasil vantagem comparativa insubstituível em estações lunares e marcianas.',
-    methodology:
-      'Modelagem preditiva econométrica combinando dados de investimentos venture capital, orçamentos espaciais governamentais e patentes globais de 2018 a 2024.',
-    techStack: ['R / Python Pandas', 'Modelagem Econométrica ARIMA', 'Tableau / D3.js Data Viz'],
-    results:
-      'Whitepaper oficial publicado e distribuído para órgãos de fomento à pesquisa e ministérios setoriais.',
-    timeline: 'Publicado em 2024',
-    specs: {
-      'Crescimento Projetado': '160% até 2032',
-      'Mercado Alvo': 'US$ 13 Bilhões',
-    },
-  },
-  {
-    id: 'trainee-impacto-carreira',
-    title: 'Formação Científica de Trainees: “Muito além do técnico”',
-    subtitle: 'Formação humanizada, liderança de projetos e residências em centros globais',
-    category: 'deeptech',
-    categoryLabel: 'Formação de Talentos • Impacto',
-    tagCategory: '07. DEPOIMENTO / TRAINEE',
-    badge: 'FORMAÇÃO DE TALENTOS • IMPACTO',
-    description:
-      'Métricas e trajetórias dos acadêmicos do NEURON que conquistaram intercâmbios e residências de pesquisa na OCAD University, McGill University e Toronto Rehabilitation Institute.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDHGKX9qeKdhTpiWgLwK6sFo4bgLsB2jeldW5bNByUGjIaHTyOxeIrGGxs-9fxee6yHFzF8A8-MV1_K9s-Fcnb5kKzLKXLpJ0LbnnvwVXejT1KaEdrhFWmhyN5n0vY8itC58M0CAZd5zcgvSXiBkdYWDmFipjDkelIrE-SR7CscFgRJ_mO5-ZtsOmb7mnDhEg38zRLM7t8nS46-8yp41LLsFEyh_eg09yFfMYioR3ovNzbCyCTN7UTiUokIsaFwtC9Qmg',
-    status: 'Em Operação',
-    tags: ['#TraineeNEURON', '#AlumniGlobal', '#UFLA', '#CarreiraCientífica'],
-    partners: ['UFLA Alunos', 'OCAD University', 'McGill', 'Toronto Rehab'],
-    institutions: 'UFLA • Programa de Formação NEURON',
-    problem:
-      'Estudantes de graduação frequentemente enfrentam barreiras para participar de pesquisas com impacto internacional sem anos de pós-graduação prévia.',
-    hypothesis:
-      'Um programa de aceleração hands-on baseado em mentoria sênior-júnior permite a alunos do 2º período liderarem módulos reais de hardware e IA.',
-    methodology:
-      'Ciclo anual de formação com sprints quinzenais, imersão em laboratório, escrita de relatórios técnicos e defesa de hipóteses perante banca docente.',
-    techStack: ['Metodologia Ágil Científica', 'Mentoria 1-on-1', 'Bancadas Abertas 24/7'],
-    results:
-      '100% dos trainees formados foram inseridos em programas internacionais ou projetos com fomento de agências de pesquisa.',
-    timeline: 'Ciclos Anuais Contínuos',
-    specs: {
-      'Carga Horária': '12h semanais flexíveis',
-      'Taxa de Inserção': '100% acadêmica/mercado',
-    },
-  },
+  LLM_CAFE_PROJECT,
+  MARCHA_PLUS_PROJECT,
 ];
 
 export const METHODOLOGY_STAGES: MethodologyStage[] = [

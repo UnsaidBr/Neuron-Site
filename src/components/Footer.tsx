@@ -6,10 +6,9 @@ import { NeuronBee } from './NeuronBee';
 
 interface FooterProps {
   onNavigateTab: (tab: PageTab) => void;
-  onOpenTraineeModal: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateTab, onOpenTraineeModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -43,10 +42,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab, onOpenTraineeModa
             </div>
           </div>
 
-          {/* Col 2: Projetos & Pesquisa */}
+          {/* Col 2: Projetos em Destaque */}
           <div>
             <h4 className="text-[10px] font-mono font-bold text-[#F59E0B] uppercase tracking-[0.25em] mb-4">
-              Pesquisa &amp; Cases
+              Projetos em Destaque
             </h4>
             <ul className="space-y-2.5 text-xs text-white/50">
               <li>
@@ -62,7 +61,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab, onOpenTraineeModa
                   onClick={() => onNavigateTab('projetos')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Agricultura Espacial &amp; Marte
+                  Robô Budista (Estátuas Interativas)
                 </button>
               </li>
               <li>
@@ -70,7 +69,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab, onOpenTraineeModa
                   onClick={() => onNavigateTab('projetos')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Robótica Social Teomórfica
+                  LLM Café (IA para Cafeicultura)
                 </button>
               </li>
               <li>
@@ -78,56 +77,48 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab, onOpenTraineeModa
                   onClick={() => onNavigateTab('projetos')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Drones &amp; Visão Computacional
+                  Marcha+ (Visão &amp; Biomecânica)
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateTab('pesquisa')}
+                  onClick={() => onNavigateTab('projetos')}
                   className="text-[#7C3AED] hover:text-[#A78BFA] transition-colors cursor-pointer text-left font-medium"
                 >
-                  Repositório Científico Completo →
+                  Ver Todos os Projetos →
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Navegação & Núcleo */}
+          {/* Col 3: Navegação */}
           <div>
             <h4 className="text-[10px] font-mono font-bold text-[#F59E0B] uppercase tracking-[0.25em] mb-4">
-              O Núcleo
+              Navegação
             </h4>
             <ul className="space-y-2.5 text-xs text-white/50">
               <li>
                 <button
-                  onClick={() => onNavigateTab('equipe')}
+                  onClick={() => onNavigateTab('home')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Sobre a Fundação &amp; Equipe
+                  Início
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateTab('brand')}
+                  onClick={() => onNavigateTab('projetos')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Brand Identity Framework
+                  Catálogo de Projetos
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateTab('pesquisa')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  Metodologia &amp; 4 Etapas
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onOpenTraineeModal}
+                  onClick={() => onNavigateTab('contatos')}
                   className="text-[#7C3AED] hover:text-[#A78BFA] transition-colors font-semibold cursor-pointer text-left"
                 >
-                  Edital Trainee 2025 (Inscreva-se)
+                  Como nos Contatar
                 </button>
               </li>
             </ul>

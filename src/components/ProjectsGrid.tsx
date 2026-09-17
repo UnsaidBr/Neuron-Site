@@ -10,28 +10,30 @@ interface ProjectsGridProps {
   showFilters?: boolean;
   title?: string;
   subtitle?: string;
+  limit?: number;
+  onViewAllProjects?: () => void;
 }
 
 export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
   onSelectProject,
   showFilters = true,
-  title = 'Projetos que Redefinem a Fronteira do Conhecimento',
-  subtitle = 'Casos documentados no ecossistema NEURON. Criatividade científica com método rigoroso para solucionar desafios da Terra ao Espaço.',
+  title = 'Projetos de Extensão e Pesquisa',
+  subtitle = 'Iniciativas estruturantes desenvolvidas no ecossistema NEURON / DCC-UFLA: Robô Budista, LLM Café e Marcha+.',
+  limit,
+  onViewAllProjects,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const categories = [
     { id: 'all', label: 'Todos os Projetos' },
-    { id: 'robotics', label: 'Robótica Teomórfica & IA' },
-    { id: 'agrospace', label: 'Agricultura Espacial' },
-    { id: 'vision', label: 'Visão Computacional & Drones' },
-    { id: 'llm', label: 'Modelos de Linguagem & HRI' },
-    { id: 'deeptech', label: 'Macroeconomia & Formação' },
+    { id: 'robotics', label: 'Robô Budista' },
+    { id: 'llm', label: 'LLM Café' },
+    { id: 'biomechanics', label: 'Marcha+' },
   ];
 
   const filteredProjects = useMemo(() => {
-    return PROJECTS_LIST.filter((project) => {
+    const list = PROJECTS_LIST.filter((project) => {
       const matchesCategory =
         selectedCategory === 'all' || project.category === selectedCategory;
       const query = searchQuery.toLowerCase().trim();
@@ -43,7 +45,9 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
         project.partners.some((p) => p.toLowerCase().includes(query));
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery]);
+
+    return limit ? list.slice(0, limit) : list;
+  }, [selectedCategory, searchQuery, limit]);
 
   return (
     <section className="w-full py-20 bg-transparent relative" id="projetos">
@@ -214,6 +218,18 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
             </StaggerItem>
           ))}
         </StaggerContainer>
+
+        {onViewAllProjects && (
+          <div className="flex justify-center pt-6">
+            <button
+              onClick={onViewAllProjects}
+              className="px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#7C3AED]/40 text-white font-medium text-sm flex items-center gap-3 transition-all cursor-pointer group shadow-lg"
+            >
+              <span>Explorar Catálogo Completo de Extensão ({PROJECTS_LIST.length} Projetos)</span>
+              <ArrowRight className="w-4 h-4 text-[#F59E0B] group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        )}
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-16 bg-white/5 rounded-2xl p-8 max-w-md mx-auto border border-white/10">

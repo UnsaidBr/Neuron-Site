@@ -3,26 +3,19 @@ import { PageTab, Project } from './types';
 import { PROJECTS_LIST, FLAGSHIP_PROJECT } from './data/projectsData';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { ExtensionPillars } from './components/ExtensionPillars';
 import { MetricsBar } from './components/MetricsBar';
 import { FlagshipProject } from './components/FlagshipProject';
 import { ProjectsGrid } from './components/ProjectsGrid';
-import { MethodologySection } from './components/MethodologySection';
-import { TeamSection } from './components/TeamSection';
-import { TestimonialSection } from './components/TestimonialSection';
-import { BrandFrameworkSection } from './components/BrandFrameworkSection';
-import { RecruitmentCTA } from './components/RecruitmentCTA';
+import { ContactCTA } from './components/RecruitmentCTA';
+import { ContactView } from './components/ContactView';
 import { Footer } from './components/Footer';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
-import { TraineeModal } from './components/TraineeModal';
-import { ResearchCasesView } from './components/ResearchCasesView';
-import { AboutTeamView } from './components/AboutTeamView';
 import { ScrollReveal } from './components/ScrollReveal';
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<PageTab>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isTraineeModalOpen, setIsTraineeModalOpen] = useState<boolean>(false);
-  const [traineeModalType, setTraineeModalType] = useState<'trainee' | 'partnership'>('trainee');
 
   const handleSelectProject = (project: Project) => {
     setSelectedProject(project);
@@ -31,11 +24,6 @@ export default function App() {
   const handleSelectProjectById = (id: string) => {
     const found = PROJECTS_LIST.find((p) => p.id === id) || FLAGSHIP_PROJECT;
     setSelectedProject(found);
-  };
-
-  const handleOpenTraineeModal = (type: 'trainee' | 'partnership' = 'trainee') => {
-    setTraineeModalType(type);
-    setIsTraineeModalOpen(true);
   };
 
   const handleNavigateTab = (tab: PageTab) => {
@@ -70,7 +58,6 @@ export default function App() {
         <Navbar
           currentTab={currentTab}
           setCurrentTab={handleNavigateTab}
-          onOpenTraineeModal={() => handleOpenTraineeModal('trainee')}
         />
       </div>
 
@@ -78,59 +65,44 @@ export default function App() {
       <main className="flex-grow relative z-10">
         {currentTab === 'home' && (
           <>
-            {/* Hero Section with Interactive Carousel */}
+            {/* Hero Section with Bold Extension Statement */}
             <ScrollReveal direction="up" duration={0.65} distance={28}>
               <HeroSection
-                onOpenTraineeModal={() => handleOpenTraineeModal('trainee')}
+                onNavigateToContact={() => handleNavigateTab('contatos')}
                 onExploreProjects={() => handleNavigateTab('projetos')}
                 onSelectProjectById={handleSelectProjectById}
               />
             </ScrollReveal>
 
-            {/* Metrics Indicator Banner */}
+            {/* Exploration of Extension: "Mais que um núcleo de estudos, fazemos extensão" */}
+            <ExtensionPillars onExploreProjects={() => handleNavigateTab('projetos')} />
+
+            {/* Minimalist Metrics Bar */}
             <ScrollReveal direction="up" duration={0.6} distance={24}>
               <MetricsBar />
             </ScrollReveal>
 
-            {/* Flagship Project Case Study */}
+            {/* Flagship Extension Case Study */}
             <ScrollReveal direction="up" duration={0.65} distance={30}>
               <FlagshipProject onSelectProject={handleSelectProject} />
             </ScrollReveal>
 
-            {/* Research & Innovation Portfolio Grid */}
+            {/* Curated 3 Projects Showcase (Minimalist, without duplicate filters) */}
             <ScrollReveal direction="up" duration={0.65} distance={30}>
               <ProjectsGrid
                 onSelectProject={handleSelectProject}
-                showFilters={true}
-                title="Portfólio de Pesquisa & Inovação"
-                subtitle="Projetos documentados no ecossistema NEURON. Criatividade científica com método rigoroso para solucionar desafios da Terra ao Espaço."
+                showFilters={false}
+                limit={3}
+                title="Extensões & Tecnologias em Ação"
+                subtitle="Os três projetos estruturantes desenvolvidos no laboratório: Robô Budista, LLM Café e Marcha+."
+                onViewAllProjects={() => handleNavigateTab('projetos')}
               />
             </ScrollReveal>
 
-            {/* 4-Step Methodology Section */}
+            {/* Minimalist Contact & Partnership Banner */}
             <ScrollReveal direction="up" duration={0.65} distance={30}>
-              <MethodologySection />
-            </ScrollReveal>
-
-            {/* Team Showcase with Real Photo */}
-            <ScrollReveal direction="up" duration={0.65} distance={30}>
-              <TeamSection />
-            </ScrollReveal>
-
-            {/* Brand Framework Section Preview */}
-            <ScrollReveal direction="up" duration={0.65} distance={30}>
-              <BrandFrameworkSection />
-            </ScrollReveal>
-
-            {/* Trainee Testimonial */}
-            <ScrollReveal direction="up" duration={0.65} distance={30}>
-              <TestimonialSection />
-            </ScrollReveal>
-
-            {/* Recruitment CTA Banner */}
-            <ScrollReveal direction="up" duration={0.65} distance={30}>
-              <RecruitmentCTA
-                onOpenTraineeModal={() => handleOpenTraineeModal('trainee')}
+              <ContactCTA
+                onNavigateToContact={() => handleNavigateTab('contatos')}
                 onExploreProjects={() => handleNavigateTab('projetos')}
               />
             </ScrollReveal>
@@ -142,51 +114,30 @@ export default function App() {
             <ProjectsGrid
               onSelectProject={handleSelectProject}
               showFilters={true}
-              title="Catálogo Geral de Pesquisas & Projetos"
-              subtitle="Navegue pelas linhas de investigação ativas no NEURON. Utilize os filtros por categoria ou a barra de busca para encontrar casos de uso, artigos e resultados de bancada."
+              title="Projetos Estruturantes do NEURON"
+              subtitle="Conheça em detalhes os três projetos ativos no laboratório: Robô Budista, LLM Café e Marcha+."
             />
           </div>
         )}
 
-        {currentTab === 'pesquisa' && (
-          <ResearchCasesView
-            onSelectProject={handleSelectProject}
-            onOpenTraineeModal={() => handleOpenTraineeModal('partnership')}
-          />
-        )}
-
-        {currentTab === 'brand' && (
-          <div className="pt-8 pb-16">
-            <BrandFrameworkSection />
-          </div>
-        )}
-
-        {currentTab === 'equipe' && (
-          <AboutTeamView onOpenTraineeModal={() => handleOpenTraineeModal('trainee')} />
+        {currentTab === 'contatos' && (
+          <ContactView />
         )}
       </main>
 
       {/* Complete Footer */}
       <Footer
         onNavigateTab={handleNavigateTab}
-        onOpenTraineeModal={() => handleOpenTraineeModal('trainee')}
       />
 
       {/* Individual Project Case Study Detail Modal */}
       <ProjectDetailModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
-        onOpenTraineeModal={() => {
+        onNavigateToContact={() => {
           setSelectedProject(null);
-          handleOpenTraineeModal('trainee');
+          handleNavigateTab('contatos');
         }}
-      />
-
-      {/* Trainee Recruitment & Partnership Modal */}
-      <TraineeModal
-        isOpen={isTraineeModalOpen}
-        onClose={() => setIsTraineeModalOpen(false)}
-        defaultType={traineeModalType}
       />
     </div>
   );

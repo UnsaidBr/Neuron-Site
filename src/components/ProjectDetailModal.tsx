@@ -6,13 +6,13 @@ import { OptimizedImage } from './OptimizedImage';
 interface ProjectDetailModalProps {
   project: Project | null;
   onClose: () => void;
-  onOpenTraineeModal: () => void;
+  onNavigateToContact?: () => void;
 }
 
 export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   project,
   onClose,
-  onOpenTraineeModal,
+  onNavigateToContact,
 }) => {
   // Close on Escape key
   useEffect(() => {
@@ -198,15 +198,17 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             </div>
 
             <div className="flex items-center gap-3 w-full sm:w-auto">
-              <button
-                onClick={() => {
-                  onClose();
-                  onOpenTraineeModal();
-                }}
-                className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-[#7C3AED] hover:bg-[#6D28D9] text-xs uppercase tracking-wider font-bold text-white shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all cursor-pointer"
-              >
-                Participar Desta Linha
-              </button>
+              {onNavigateToContact && (
+                <button
+                  onClick={() => {
+                    onClose();
+                    onNavigateToContact();
+                  }}
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-[#7C3AED] hover:bg-[#6D28D9] text-xs uppercase tracking-wider font-bold text-white shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all cursor-pointer"
+                >
+                  Entrar em Contato Sobre Este Projeto
+                </button>
+              )}
               <button
                 onClick={onClose}
                 className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs uppercase tracking-wider text-white/70 hover:text-white transition-colors cursor-pointer"

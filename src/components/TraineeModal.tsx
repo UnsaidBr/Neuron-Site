@@ -270,8 +270,8 @@ export const TraineeModal: React.FC<TraineeModalProps> = ({
                       <option value="Agricultura Espacial & Bio-Engenharia">
                         Agricultura Espacial &amp; Bio-Engenharia
                       </option>
-                      <option value="Visão Computacional & Drones">
-                        Visão Computacional &amp; Drones
+                      <option value="Visão Computacional & Sensoriamento">
+                        Visão Computacional &amp; Sensoriamento
                       </option>
                       <option value="Modelos de Linguagem & HRI">
                         Modelos de Linguagem &amp; HRI

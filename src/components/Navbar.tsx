@@ -1,28 +1,23 @@
 import React, { useState } from 'react';
 import { PageTab } from '../types';
-import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowRight, Mail } from 'lucide-react';
 import { NeuronLogo } from './NeuronLogo';
-import { NeuronBee } from './NeuronBee';
 
 interface NavbarProps {
   currentTab: PageTab;
   setCurrentTab: (tab: PageTab) => void;
-  onOpenTraineeModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentTab,
   setCurrentTab,
-  onOpenTraineeModal,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks: { id: PageTab; label: string }[] = [
     { id: 'home', label: 'Início' },
     { id: 'projetos', label: 'Projetos' },
-    { id: 'pesquisa', label: 'Pesquisa & Cases' },
-    { id: 'brand', label: 'Brand Framework' },
-    { id: 'equipe', label: 'Equipe & Sobre' },
+    { id: 'contatos', label: 'Contatos' },
   ];
 
   const handleNavClick = (tab: PageTab) => {
@@ -53,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleNavClick(link.id)}
                 className={`transition-colors cursor-pointer pb-1 ${
                   isActive
-                    ? 'text-white border-b border-[#7C3AED]'
+                    ? 'text-white border-b border-[#7C3AED] font-bold'
                     : 'text-white/60 hover:text-white'
                 }`}
               >
@@ -66,12 +61,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Action Button & Mobile Hamburger */}
         <div className="flex items-center space-x-3">
           <button
-            onClick={onOpenTraineeModal}
+            onClick={() => handleNavClick('contatos')}
             className="hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2.5 rounded-lg text-xs uppercase tracking-widest font-bold text-white bg-[#7C3AED] hover:bg-[#6D28D9] shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all cursor-pointer hover:scale-105 group"
           >
-            <NeuronBee variant="micro" className="mr-1.5 group-hover:rotate-12 transition-transform" />
-            <span>Colmeia Trainee</span>
-            <ArrowRight className="w-3.5 h-3.5 ml-1.5 text-white/80" />
+            <Mail className="w-3.5 h-3.5 mr-1.5 text-[#F59E0B]" />
+            <span>Fale Conosco</span>
+            <ArrowRight className="w-3.5 h-3.5 ml-1.5 text-white/80 group-hover:translate-x-0.5 transition-transform" />
           </button>
 
           {/* Mobile Menu Toggle Button */}
@@ -109,14 +104,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <div className="pt-2 border-t border-white/5">
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenTraineeModal();
-              }}
+              onClick={() => handleNavClick('contatos')}
               className="w-full py-3 rounded-lg bg-[#7C3AED] hover:bg-[#6D28D9] text-xs uppercase tracking-widest font-bold text-white flex items-center justify-center space-x-2 shadow-[0_0_20px_rgba(124,58,237,0.3)]"
             >
-              <Sparkles className="w-4 h-4 text-[#F59E0B]" />
-              <span>Inscrições Abertas 2025</span>
+              <Mail className="w-4 h-4 text-[#F59E0B]" />
+              <span>Fale Conosco</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
