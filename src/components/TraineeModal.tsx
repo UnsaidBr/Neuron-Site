@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { TraineeApplication } from '../types';
-import { X, Sparkles, Send, CheckCircle2, ArrowRight } from 'lucide-react';
+import { X, Sparkles, Send, CheckCircle2, ArrowRight, AlertCircle } from 'lucide-react';
 import { NeuronBee } from './NeuronBee';
+import { submitTraineeApplication, ApiError } from '../services/api';
 
 interface TraineeModalProps {
   isOpen: boolean;
@@ -27,6 +28,7 @@ export const TraineeModal: React.FC<TraineeModalProps> = ({
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     setFormData((prev) => ({ ...prev, type: defaultType }));
@@ -45,18 +47,53 @@ export const TraineeModal: React.FC<TraineeModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
+
     setLoading(true);
-    // Simulate submission
-    setTimeout(() => {
-      setLoading(false);
+    setErrorMessage(null);
+
+    try {
+      await submitTraineeApplication({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        course: formData.course.trim(),
+        period: formData.period.trim(),
+        areaOfInterest: formData.areaOfInterest.trim(),
+        motivation: formData.motivation.trim(),
+        type: formData.type,
+      });
       setSubmitted(true);
-    }, 800);
+    } catch (err: any) {
+      if (err instanceof ApiError) {
+        if (err.statusCode === 503) {
+          setErrorMessage(
+            'O serviço de cadastro está temporariamente indisponível. Por favor, envie sua candidatura ou dúvida diretamente para neuron@dcc.ufla.br.'
+          );
+        } else if (err.statusCode === 429) {
+          setErrorMessage(
+            'Muitas solicitações foram enviadas recentemente. Aguarde alguns instantes antes de reenviar.'
+          );
+        } else {
+          setErrorMessage(
+            err.message || 'Não foi possível registrar sua candidatura. Verifique os campos preenchidos.'
+          );
+        }
+      } else {
+        setErrorMessage(
+          'Houve uma falha de conexão com o servidor. Tente novamente mais tarde ou escreva para neuron@dcc.ufla.br.'
+        );
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setErrorMessage(null);
     onClose();
   };
 
@@ -173,6 +210,17 @@ export const TraineeModal: React.FC<TraineeModalProps> = ({
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm">
+                {errorMessage && (
+                  <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-2.5 text-left animate-fade-in">
+                    <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                    <div className="text-xs text-rose-200/90 leading-relaxed">
+                      <strong className="font-semibold text-rose-300 block mb-0.5">
+                        Falha no envio da solicitação:
+                      </strong>
+                      {errorMessage}
+                    </div>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono font-medium text-white/70">

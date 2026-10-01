@@ -19,8 +19,39 @@ export interface Project {
   techStack: string[];
   results: string;
   timeline: string;
+  year: number;
   quote?: string;
   specs?: { [key: string]: string };
+}
+
+export interface Publication {
+  id: string;
+  title: string;
+  authors: string;
+  venue: string;
+  year: number;
+  projectId: string;
+  projectTitle: string;
+  type: 'artigo' | 'conferencia' | 'relatorio' | 'patente';
+  typeLabel: string;
+  abstract: string;
+  tags: string[];
+  link?: string;
+  badge: string;
+}
+
+export interface Partner {
+  id: string;
+  name: string;
+  category: 'universidade' | 'fomento' | 'internacional' | 'setor-produtivo' | 'saude';
+  categoryLabel: string;
+  country: string;
+  city?: string;
+  description: string;
+  role: string;
+  projectsInvolved: string[];
+  website?: string;
+  badge: string;
 }
 
 export interface BrandCard {
@@ -68,4 +99,10 @@ export interface TraineeApplication {
   type: 'trainee' | 'partnership';
 }
 
-export type PageTab = 'home' | 'projetos' | 'contatos';
+export type PageTab =
+  | 'equipe-sobre'
+  | 'publicacoes-projetos'
+  | 'parcerias'
+  | 'contatos'
+  | 'home'
+  | 'projetos';

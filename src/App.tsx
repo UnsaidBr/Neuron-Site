@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import { PageTab, Project } from './types';
 import { PROJECTS_LIST, FLAGSHIP_PROJECT } from './data/projectsData';
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { ExtensionPillars } from './components/ExtensionPillars';
-import { MetricsBar } from './components/MetricsBar';
-import { FlagshipProject } from './components/FlagshipProject';
-import { ProjectsGrid } from './components/ProjectsGrid';
-import { ContactCTA } from './components/RecruitmentCTA';
+import { AboutAndTeamView } from './components/AboutAndTeamView';
+import { PublicationsAndProjectsView } from './components/PublicationsAndProjectsView';
+import { PartnershipsView } from './components/PartnershipsView';
 import { ContactView } from './components/ContactView';
 import { Footer } from './components/Footer';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
-import { ScrollReveal } from './components/ScrollReveal';
+import { TraineeModal } from './components/TraineeModal';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<PageTab>('home');
+  const [currentTab, setCurrentTab] = useState<PageTab>('equipe-sobre');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isTraineeModalOpen, setIsTraineeModalOpen] = useState(false);
 
   const handleSelectProject = (project: Project) => {
     setSelectedProject(project);
@@ -63,61 +61,21 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-grow relative z-10">
-        {currentTab === 'home' && (
-          <>
-            {/* Hero Section with Bold Extension Statement */}
-            <ScrollReveal direction="up" duration={0.65} distance={28}>
-              <HeroSection
-                onNavigateToContact={() => handleNavigateTab('contatos')}
-                onExploreProjects={() => handleNavigateTab('projetos')}
-                onSelectProjectById={handleSelectProjectById}
-              />
-            </ScrollReveal>
-
-            {/* Exploration of Extension: "Mais que um núcleo de estudos, fazemos extensão" */}
-            <ExtensionPillars onExploreProjects={() => handleNavigateTab('projetos')} />
-
-            {/* Minimalist Metrics Bar */}
-            <ScrollReveal direction="up" duration={0.6} distance={24}>
-              <MetricsBar />
-            </ScrollReveal>
-
-            {/* Flagship Extension Case Study */}
-            <ScrollReveal direction="up" duration={0.65} distance={30}>
-              <FlagshipProject onSelectProject={handleSelectProject} />
-            </ScrollReveal>
-
-            {/* Curated 3 Projects Showcase (Minimalist, without duplicate filters) */}
-            <ScrollReveal direction="up" duration={0.65} distance={30}>
-              <ProjectsGrid
-                onSelectProject={handleSelectProject}
-                showFilters={false}
-                limit={3}
-                title="Extensões & Tecnologias em Ação"
-                subtitle="Os três projetos estruturantes desenvolvidos no laboratório: Robô Budista, LLM Café e Marcha+."
-                onViewAllProjects={() => handleNavigateTab('projetos')}
-              />
-            </ScrollReveal>
-
-            {/* Minimalist Contact & Partnership Banner */}
-            <ScrollReveal direction="up" duration={0.65} distance={30}>
-              <ContactCTA
-                onNavigateToContact={() => handleNavigateTab('contatos')}
-                onExploreProjects={() => handleNavigateTab('projetos')}
-              />
-            </ScrollReveal>
-          </>
+        {(currentTab === 'equipe-sobre' || currentTab === 'home') && (
+          <AboutAndTeamView
+            onNavigateTab={handleNavigateTab}
+            onOpenTraineeModal={() => setIsTraineeModalOpen(true)}
+          />
         )}
 
-        {currentTab === 'projetos' && (
-          <div className="pt-8 pb-16">
-            <ProjectsGrid
-              onSelectProject={handleSelectProject}
-              showFilters={true}
-              title="Projetos Estruturantes do NEURON"
-              subtitle="Conheça em detalhes os três projetos ativos no laboratório: Robô Budista, LLM Café e Marcha+."
-            />
-          </div>
+        {(currentTab === 'publicacoes-projetos' || currentTab === 'projetos') && (
+          <PublicationsAndProjectsView
+            onSelectProject={handleSelectProject}
+          />
+        )}
+
+        {currentTab === 'parcerias' && (
+          <PartnershipsView />
         )}
 
         {currentTab === 'contatos' && (
@@ -138,6 +96,13 @@ export default function App() {
           setSelectedProject(null);
           handleNavigateTab('contatos');
         }}
+      />
+
+      {/* Trainee Recruitment Modal */}
+      <TraineeModal
+        isOpen={isTraineeModalOpen}
+        onClose={() => setIsTraineeModalOpen(false)}
+        defaultType="trainee"
       />
     </div>
   );

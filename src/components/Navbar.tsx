@@ -15,8 +15,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks: { id: PageTab; label: string }[] = [
-    { id: 'home', label: 'Início' },
-    { id: 'projetos', label: 'Projetos' },
+    { id: 'equipe-sobre', label: 'Equipe e Sobre' },
+    { id: 'publicacoes-projetos', label: 'Publicações & Projetos' },
+    { id: 'parcerias', label: 'Parcerias' },
     { id: 'contatos', label: 'Contatos' },
   ];
 
@@ -31,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo matching Frame 12 2.png */}
         <button
-          onClick={() => handleNavClick('home')}
+          onClick={() => handleNavClick('equipe-sobre')}
           className="flex items-center group text-left cursor-pointer focus:outline-none"
           aria-label="Ir para a página inicial do NEURON"
         >
@@ -41,7 +42,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-8 text-xs font-medium uppercase tracking-widest text-white/60">
           {navLinks.map((link) => {
-            const isActive = currentTab === link.id;
+            const isActive =
+              currentTab === link.id ||
+              (link.id === 'equipe-sobre' && currentTab === 'home') ||
+              (link.id === 'publicacoes-projetos' && currentTab === 'projetos');
             return (
               <button
                 key={link.id}
@@ -85,7 +89,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="lg:hidden border-t border-white/5 bg-[#0A0A0A]/95 px-4 pt-4 pb-6 space-y-3 backdrop-blur-xl">
           <div className="flex flex-col space-y-2">
             {navLinks.map((link) => {
-              const isActive = currentTab === link.id;
+              const isActive =
+                currentTab === link.id ||
+                (link.id === 'equipe-sobre' && currentTab === 'home') ||
+                (link.id === 'publicacoes-projetos' && currentTab === 'projetos');
               return (
                 <button
                   key={link.id}

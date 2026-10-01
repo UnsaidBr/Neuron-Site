@@ -21,6 +21,7 @@ import {
 import { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
 import { NeuronBee } from './NeuronBee';
 import { ContactMessage } from '../types';
+import { submitContact, ApiError } from '../services/api';
 
 export const ContactView: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
@@ -36,6 +37,7 @@ export const ContactView: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
 
   const officialEmail = 'neuron@dcc.ufla.br';
@@ -54,13 +56,47 @@ export const ContactView: React.FC = () => {
     setTimeout(() => setCopiedAddress(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setErrorMessage(null);
+
+    try {
+      await submitContact({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        institution: formData.institution?.trim() || undefined,
+        phone: formData.phone?.trim() || undefined,
+        subject: formData.subject.trim(),
+        topic: formData.topic,
+        message: formData.message.trim(),
+      });
       setSubmitted(true);
-    }, 900);
+    } catch (err: any) {
+      if (err instanceof ApiError) {
+        if (err.statusCode === 503) {
+          setErrorMessage(
+            'O serviço de banco de dados está temporariamente em manutenção ou indisponível. Por favor, entre em contato diretamente pelo e-mail neuron@dcc.ufla.br.'
+          );
+        } else if (err.statusCode === 429) {
+          setErrorMessage(
+            'Muitas mensagens foram enviadas em um curto período. Por favor, aguarde alguns instantes antes de reenviar.'
+          );
+        } else {
+          setErrorMessage(
+            err.message || 'Não foi possível registrar sua mensagem. Verifique os dados informados.'
+          );
+        }
+      } else {
+        setErrorMessage(
+          'Ocorreu uma instabilidade na comunicação com o servidor. Tente novamente mais tarde ou escreva para neuron@dcc.ufla.br.'
+        );
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const faqs = [
@@ -454,6 +490,7 @@ export const ContactView: React.FC = () => {
                   <button
                     onClick={() => {
                       setSubmitted(false);
+                      setErrorMessage(null);
                       setFormData({
                         name: '',
                         email: '',
@@ -471,6 +508,17 @@ export const ContactView: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {errorMessage && (
+                    <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-3 text-left animate-fade-in">
+                      <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+                      <div className="text-xs text-rose-200/90 leading-relaxed">
+                        <strong className="font-semibold text-rose-300 block mb-0.5">
+                          Não foi possível concluir o envio:
+                        </strong>
+                        {errorMessage}
+                      </div>
+                    </div>
+                  )}
                   {/* Row 1: Name and Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>

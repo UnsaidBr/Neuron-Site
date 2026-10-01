@@ -1,0 +1,156 @@
+// Prisma Schema for NEURON (DCC/UFLA)
+// Database: PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id            String         @id
+  title         String
+  subtitle      String
+  category      String
+  categoryLabel String
+  tagCategory   String
+  badge         String
+  description   String         @db.Text
+  image         String         @db.Text
+  status        String
+  featured      Boolean        @default(false)
+  tags          String[]
+  partners      String[]
+  institutions  String
+  problem       String         @db.Text
+  hypothesis    String         @db.Text
+  methodology   String         @db.Text
+  techStack     String[]
+  results       String         @db.Text
+  timeline      String
+  year          Int
+  quote         String?        @db.Text
+  specs         Json?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  publications  Publication[]
+
+  @@map("projects")
+}
+
+model Publication {
+  id           String   @id
+  title        String
+  authors      String
+  venue        String
+  year         Int
+  projectId    String
+  type         String
+  typeLabel    String
+  abstract     String   @db.Text
+  tags         String[]
+  link         String?
+  badge        String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([year])
+  @@index([type])
+  @@map("publications")
+}
+
+model Partner {
+  id               String   @id
+  name             String
+  category         String
+  categoryLabel    String
+  country          String
+  city             String?
+  badge            String
+  description      String   @db.Text
+  role             String   @db.Text
+  projectsInvolved String[]
+  website          String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([category])
+  @@map("partners")
+}
+
+model ContactMessage {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  institution String?
+  phone       String?
+  subject     String
+  topic       String   @default("parceria")
+  message     String   @db.Text
+  status      String   @default("unread")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("contact_messages")
+}
+
+model PartnershipProposal {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  institution String
+  type        String
+  scope       String   @db.Text
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@map("partnership_proposals")
+}
+
+model TraineeApplication {
+  id             String   @id @default(uuid())
+  name           String
+  email          String
+  phone          String
+  course         String
+  period         String
+  areaOfInterest String
+  motivation     String   @db.Text
+  type           String   @default("trainee")
+  status         String   @default("pending")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@map("trainee_applications")
+}
+
+model AdminUser {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  name         String
+  role         String    @default("admin")
+  isActive     Boolean   @default(true) @map("is_active")
+  tokenVersion Int       @default(1) @map("token_version")
+  lastLoginAt  DateTime? @map("last_login_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@index([email])
+  @@map("admin_users")
+}

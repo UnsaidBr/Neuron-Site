@@ -45,47 +45,42 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
           {/* Col 2: Projetos em Destaque */}
           <div>
             <h4 className="text-[10px] font-mono font-bold text-[#F59E0B] uppercase tracking-[0.25em] mb-4">
-              Projetos em Destaque
+              Projetos Estruturantes
             </h4>
             <ul className="space-y-2.5 text-xs text-white/50">
               <li>
                 <button
-                  onClick={() => onNavigateTab('projetos')}
+                  onClick={() => onNavigateTab('publicacoes-projetos')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Robô Budista Humanoide
+                  <span className="text-[#F59E0B] font-mono text-[10px] mr-1.5">[2023]</span>
+                  Robô Budista Interativo
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateTab('projetos')}
+                  onClick={() => onNavigateTab('publicacoes-projetos')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Robô Budista (Estátuas Interativas)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigateTab('projetos')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
+                  <span className="text-[#F59E0B] font-mono text-[10px] mr-1.5">[2024]</span>
                   LLM Café (IA para Cafeicultura)
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateTab('projetos')}
+                  onClick={() => onNavigateTab('publicacoes-projetos')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
+                  <span className="text-[#F59E0B] font-mono text-[10px] mr-1.5">[2025]</span>
                   Marcha+ (Visão &amp; Biomecânica)
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateTab('projetos')}
+                  onClick={() => onNavigateTab('publicacoes-projetos')}
                   className="text-[#7C3AED] hover:text-[#A78BFA] transition-colors cursor-pointer text-left font-medium"
                 >
-                  Ver Todos os Projetos →
+                  Ver Publicações &amp; Projetos →
                 </button>
               </li>
             </ul>
@@ -99,18 +94,26 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
             <ul className="space-y-2.5 text-xs text-white/50">
               <li>
                 <button
-                  onClick={() => onNavigateTab('home')}
+                  onClick={() => onNavigateTab('equipe-sobre')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Início
+                  Equipe e Sobre
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateTab('projetos')}
+                  onClick={() => onNavigateTab('publicacoes-projetos')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Catálogo de Projetos
+                  Publicações &amp; Projetos
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigateTab('parcerias')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Parcerias
                 </button>
               </li>
               <li>
@@ -118,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
                   onClick={() => onNavigateTab('contatos')}
                   className="text-[#7C3AED] hover:text-[#A78BFA] transition-colors font-semibold cursor-pointer text-left"
                 >
-                  Como nos Contatar
+                  Fale Conosco
                 </button>
               </li>
             </ul>

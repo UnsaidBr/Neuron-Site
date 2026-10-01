@@ -109,6 +109,7 @@ export const FLAGSHIP_PROJECT: Project = {
   results:
     'Exibição de destaque com mais de 120 mil interações documentadas no Museu Nacional em Seul; destaque de capa na Agência FAPESP; submissão de paper conjunto no IEEE HRI 2025.',
   timeline: '2023 - 2025 (Fase de Operação e Extensão)',
+  year: 2023,
   quote:
     'Uma colaboração transfronteiriça unindo inteligência artificial de ponta, visão computacional e interação humano-robô sensível à tradição e espiritualidade oriental.',
   specs: {
@@ -151,6 +152,7 @@ export const LLM_CAFE_PROJECT: Project = {
   results:
     'Mais de 15.000 publicações cafeeiras indexadas com índice de precisão em diagnose e recomendações de manejo de 95,2% validado por corpo docente da UFLA.',
   timeline: '2024 - 2026 (Piloto com Cooperativas)',
+  year: 2024,
   specs: {
     'Base de Conhecimento': '15.000+ publicações e teses da UFLA',
     'Acurácia Técnica': '95,2% validada por agrônomos',
@@ -188,7 +190,8 @@ export const MARCHA_PLUS_PROJECT: Project = {
   ],
   results:
     'Correlação de 96,8% nos parâmetros angulares em relação aos sistemas ópticos tradicionais de laboratório, reduzindo o tempo de protocolo de avaliação de 2 horas para 5 minutos.',
-  timeline: '2024 - 2026 (Extensão Clínica e Validação)',
+  timeline: '2025 - 2026 (Extensão Clínica e Validação)',
+  year: 2025,
   specs: {
     'Método de Rastreamento': 'Markerless (sem marcadores)',
     'Precisão Cinemática': 'Erro médio < 1,8° articulares',

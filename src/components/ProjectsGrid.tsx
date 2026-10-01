@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Project } from '../types';
 import { PROJECTS_LIST } from '../data/projectsData';
+import { getProjects } from '../services/api';
 import { ArrowRight, Search, SlidersHorizontal, Tag } from 'lucide-react';
 import { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
 import { OptimizedImage } from './OptimizedImage';
@@ -22,8 +23,27 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
   limit,
   onViewAllProjects,
 }) => {
+  const [projects, setProjects] = useState<Project[]>(PROJECTS_LIST);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadProjects() {
+      try {
+        const { projects: data } = await getProjects();
+        if (isMounted && data && data.length > 0) {
+          setProjects(data);
+        }
+      } catch {
+        // Fallback transparently inside getProjects()
+      }
+    }
+    loadProjects();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const categories = [
     { id: 'all', label: 'Todos os Projetos' },
@@ -33,7 +53,7 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
   ];
 
   const filteredProjects = useMemo(() => {
-    const list = PROJECTS_LIST.filter((project) => {
+    const list = projects.filter((project) => {
       const matchesCategory =
         selectedCategory === 'all' || project.category === selectedCategory;
       const query = searchQuery.toLowerCase().trim();
@@ -47,7 +67,7 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
     });
 
     return limit ? list.slice(0, limit) : list;
-  }, [selectedCategory, searchQuery, limit]);
+  }, [projects, selectedCategory, searchQuery, limit]);
 
   return (
     <section className="w-full py-20 bg-transparent relative" id="projetos">
