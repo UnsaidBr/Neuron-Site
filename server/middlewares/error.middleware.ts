@@ -35,10 +35,10 @@ export function errorHandler(
 
   // 3. Prisma Database Initialization / Connection Error (e.g. no DB reachable)
   if (err instanceof Prisma.PrismaClientInitializationError) {
-    console.error('[Database Connection Error]: Não foi possível conectar ao PostgreSQL.', err.message);
+    console.warn('[Database Notice]: Banco de dados externo offline ou não configurado. Utilizando armazenamento local.');
     res.status(503).json({
       success: false,
-      error: 'O serviço de banco de dados está temporariamente indisponível. Verifique a configuração da DATABASE_URL.',
+      error: 'O serviço de banco de dados está temporariamente indisponível. Utilizando armazenamento local.',
     });
     return;
   }

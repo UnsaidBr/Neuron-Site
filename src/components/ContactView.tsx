@@ -2,43 +2,22 @@ import React, { useState } from 'react';
 import {
   Mail,
   MapPin,
-  Send,
   CheckCircle2,
   AlertCircle,
   Copy,
   ExternalLink,
   Instagram,
   Github,
-  Linkedin,
-  Building2,
-  Clock,
   Sparkles,
-  HelpCircle,
-  ChevronDown,
   Navigation,
   Compass,
 } from 'lucide-react';
 import { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
 import { NeuronBee } from './NeuronBee';
-import { ContactMessage } from '../types';
-import { submitContact, ApiError } from '../services/api';
 
 export const ContactView: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
   const [copiedAddress, setCopiedAddress] = useState<boolean>(false);
-  const [formData, setFormData] = useState<ContactMessage>({
-    name: '',
-    email: '',
-    institution: '',
-    phone: '',
-    subject: '',
-    topic: 'parceria',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [activeFaq, setActiveFaq] = useState<number | null>(0);
 
   const officialEmail = 'neuron@dcc.ufla.br';
   const fullAddress =
@@ -55,72 +34,6 @@ export const ContactView: React.FC = () => {
     setCopiedAddress(true);
     setTimeout(() => setCopiedAddress(false), 2500);
   };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-
-    setIsSubmitting(true);
-    setErrorMessage(null);
-
-    try {
-      await submitContact({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        institution: formData.institution?.trim() || undefined,
-        phone: formData.phone?.trim() || undefined,
-        subject: formData.subject.trim(),
-        topic: formData.topic,
-        message: formData.message.trim(),
-      });
-      setSubmitted(true);
-    } catch (err: any) {
-      if (err instanceof ApiError) {
-        if (err.statusCode === 503) {
-          setErrorMessage(
-            'O serviço de banco de dados está temporariamente em manutenção ou indisponível. Por favor, entre em contato diretamente pelo e-mail neuron@dcc.ufla.br.'
-          );
-        } else if (err.statusCode === 429) {
-          setErrorMessage(
-            'Muitas mensagens foram enviadas em um curto período. Por favor, aguarde alguns instantes antes de reenviar.'
-          );
-        } else {
-          setErrorMessage(
-            err.message || 'Não foi possível registrar sua mensagem. Verifique os dados informados.'
-          );
-        }
-      } else {
-        setErrorMessage(
-          'Ocorreu uma instabilidade na comunicação com o servidor. Tente novamente mais tarde ou escreva para neuron@dcc.ufla.br.'
-        );
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const faqs = [
-    {
-      question: 'Haverá novo processo seletivo para novos membros ou trainees?',
-      answer:
-        'Não. Os processos seletivos e editais para trainees estão oficialmente encerrados para este ano. No momento, o núcleo não está recrutando novos integrantes. Fique atento às nossas redes oficiais para anúncios sobre futuros ciclos.',
-    },
-    {
-      question: 'Como propor uma parceria institucional ou projeto de extensão?',
-      answer:
-        'Empresas, prefeituras, cooperativas agrícolas e instituições de ensino podem propor parcerias em tecnologia e extensão diretamente pelo formulário desta página ou enviando um e-mail com a proposta para neuron@dcc.ufla.br.',
-    },
-    {
-      question: 'O NEURON realiza palestras e oficinas em escolas ou eventos?',
-      answer:
-        'Sim! Como núcleo de extensão da Universidade Federal de Lavras (UFLA), temos como missão levar ciência à sociedade. Realizamos demonstrações de robótica social, bate-papos sobre inteligência artificial e oficinas práticas.',
-    },
-    {
-      question: 'Onde o laboratório fica localizado fisicamente?',
-      answer:
-        'Estamos sediados no Departamento de Ciência da Computação (DCC), dentro do campus universitário da UFLA em Lavras, Minas Gerais.',
-    },
-  ];
 
   return (
     <div className="pt-8 pb-20 relative overflow-hidden">
@@ -180,6 +93,7 @@ export const ContactView: React.FC = () => {
 
               <div className="pt-6 mt-6 border-t border-white/5 flex items-center gap-2">
                 <button
+                  type="button"
                   onClick={() => handleCopyEmail(officialEmail)}
                   className="flex-1 py-2.5 px-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium text-xs border border-white/10 flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
@@ -461,244 +375,25 @@ export const ContactView: React.FC = () => {
           </div>
         </ScrollReveal>
 
-        {/* Form and FAQ Section in Balanced Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left: Contact Message Form (7 cols) */}
-          <ScrollReveal direction="up" duration={0.65} className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-2xl bg-[#0D0D0D]/90 border border-white/10 relative overflow-hidden">
-              <div className="mb-6">
-                <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#A78BFA] font-bold">
-                  FORMULÁRIO DE ATENDIMENTO
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
-                  Envie uma Mensagem Direta
-                </h2>
-                <p className="text-xs sm:text-sm text-white/50 mt-1.5 font-light">
-                  Preencha os campos abaixo para iniciar um diálogo com os coordenadores de extensão do laboratório.
+        {/* DCC / UFLA Institutional Card */}
+        <ScrollReveal direction="up" duration={0.65}>
+          <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-[#7C3AED]/10 border border-[#7C3AED]/30 flex items-center justify-center shrink-0">
+                <NeuronBee variant="micro" />
+              </div>
+              <div>
+                <h4 className="text-base font-bold text-white">Extensão Universitária • DCC</h4>
+                <p className="text-xs font-mono text-[#A78BFA]">
+                  Universidade Federal de Lavras (UFLA)
                 </p>
               </div>
-
-              {submitted ? (
-                <div className="p-8 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-4 my-6">
-                  <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">Mensagem Enviada com Sucesso!</h3>
-                  <p className="text-xs sm:text-sm text-white/60 max-w-md mx-auto leading-relaxed">
-                    Agradecemos pelo contato. Sua solicitação foi encaminhada para a equipe de extensão do NEURON (DCC/UFLA) e retornaremos pelo e-mail informado.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setErrorMessage(null);
-                      setFormData({
-                        name: '',
-                        email: '',
-                        institution: '',
-                        phone: '',
-                        subject: '',
-                        topic: 'parceria',
-                        message: '',
-                      });
-                    }}
-                    className="mt-4 px-6 py-2.5 rounded-lg bg-white/10 hover:bg-white/15 text-xs font-semibold text-white transition-colors cursor-pointer"
-                  >
-                    Enviar Outra Mensagem
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  {errorMessage && (
-                    <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-3 text-left animate-fade-in">
-                      <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
-                      <div className="text-xs text-rose-200/90 leading-relaxed">
-                        <strong className="font-semibold text-rose-300 block mb-0.5">
-                          Não foi possível concluir o envio:
-                        </strong>
-                        {errorMessage}
-                      </div>
-                    </div>
-                  )}
-                  {/* Row 1: Name and Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-mono text-white/70 mb-1.5 font-medium">
-                        Seu Nome Completo *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Ex: Profª Ana Silva ou Carlos Mendes"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-xs sm:text-sm focus:border-[#7C3AED] focus:outline-none focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono text-white/70 mb-1.5 font-medium">
-                        E-mail de Contato *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="seuemail@empresa.com ou @ufla.br"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-xs sm:text-sm focus:border-[#7C3AED] focus:outline-none focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Row 2: Institution and Topic */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-mono text-white/70 mb-1.5 font-medium">
-                        Instituição / Empresa / Organização
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Ex: UFLA, Empresa X, Escola Municipal"
-                        value={formData.institution}
-                        onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-xs sm:text-sm focus:border-[#7C3AED] focus:outline-none focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono text-white/70 mb-1.5 font-medium">
-                        Finalidade do Contato *
-                      </label>
-                      <select
-                        value={formData.topic}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            topic: e.target.value as ContactMessage['topic'],
-                          })
-                        }
-                        className="w-full px-4 py-3 rounded-lg bg-[#141414] border border-white/10 text-white text-xs sm:text-sm focus:border-[#7C3AED] focus:outline-none focus:ring-1 focus:ring-[#7C3AED] transition-all cursor-pointer"
-                      >
-                        <option value="parceria">Proposta de Parceria / Convênio de Extensão</option>
-                        <option value="palestra">Convite para Palestra, Workshop ou Oficina</option>
-                        <option value="extensao">Colaboração em Projetos Sociais / Escolares</option>
-                        <option value="duvida">Dúvidas Técnicas sobre Nossos Projetos</option>
-                        <option value="outro">Outro Assunto</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Row 3: Subject */}
-                  <div>
-                    <label className="block text-xs font-mono text-white/70 mb-1.5 font-medium">
-                      Assunto da Mensagem *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Ex: Proposta de cooperação para agricultura de precisão"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-xs sm:text-sm focus:border-[#7C3AED] focus:outline-none focus:ring-1 focus:ring-[#7C3AED] transition-all"
-                    />
-                  </div>
-
-                  {/* Row 4: Message Body */}
-                  <div>
-                    <label className="block text-xs font-mono text-white/70 mb-1.5 font-medium">
-                      Mensagem Detalhada *
-                    </label>
-                    <textarea
-                      required
-                      rows={5}
-                      placeholder="Descreva sua proposta, objetivo da parceria ou detalhes da solicitação..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-xs sm:text-sm focus:border-[#7C3AED] focus:outline-none focus:ring-1 focus:ring-[#7C3AED] transition-all resize-y"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3.5 px-6 rounded-lg bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(124,58,237,0.3)] cursor-pointer disabled:opacity-50"
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span>Enviando mensagem...</span>
-                      </span>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        <span>Enviar Mensagem ao NEURON</span>
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
             </div>
-          </ScrollReveal>
-
-          {/* Right: FAQ & Support Notes (5 cols) */}
-          <ScrollReveal direction="up" delay={0.15} duration={0.65} className="lg:col-span-5 space-y-6">
-            {/* Quick FAQ Accordion */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#0D0D0D]/90 border border-white/10 space-y-4">
-              <div className="flex items-center gap-2 text-[#F59E0B]">
-                <HelpCircle className="w-4 h-4" />
-                <span className="text-[10px] font-mono uppercase tracking-widest font-bold">
-                  DÚVIDAS FREQUENTES
-                </span>
-              </div>
-              <h3 className="text-xl font-bold text-white tracking-tight">Perguntas Comuns</h3>
-
-              <div className="space-y-3 pt-2">
-                {faqs.map((faq, idx) => {
-                  const isOpen = activeFaq === idx;
-                  return (
-                    <div
-                      key={idx}
-                      className="border border-white/5 rounded-xl overflow-hidden bg-white/[0.02] transition-colors"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setActiveFaq(isOpen ? null : idx)}
-                        className="w-full p-4 text-left flex items-center justify-between gap-3 text-xs sm:text-sm font-medium text-white hover:text-[#A78BFA] transition-colors cursor-pointer"
-                      >
-                        <span>{faq.question}</span>
-                        <ChevronDown
-                          className={`w-4 h-4 text-white/50 shrink-0 transition-transform duration-300 ${
-                            isOpen ? 'rotate-180 text-[#7C3AED]' : ''
-                          }`}
-                        />
-                      </button>
-                      {isOpen && (
-                        <div className="px-4 pb-4 text-xs text-white/60 leading-relaxed font-light border-t border-white/5 pt-3">
-                          {faq.answer}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* DCC / UFLA Institutional Card */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/10 space-y-3">
-              <div className="flex items-center gap-3">
-                <NeuronBee variant="micro" />
-                <div>
-                  <h4 className="text-sm font-bold text-white">Extensão Universitária • DCC</h4>
-                  <p className="text-[11px] font-mono text-[#A78BFA]">
-                    Universidade Federal de Lavras (UFLA)
-                  </p>
-                </div>
-              </div>
-              <p className="text-xs text-white/50 leading-relaxed font-light">
-                O NEURON atua em conformidade com as diretrizes de extensão do MEC, integrando ensino, pesquisa e extensão universitária através de projetos abertos de alto impacto socioeconômico.
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
+            <p className="text-xs text-white/50 leading-relaxed font-light max-w-xl">
+              O NEURON atua em conformidade com as diretrizes de extensão do MEC, integrando ensino, pesquisa e extensão universitária através de projetos abertos de alto impacto socioeconômico.
+            </p>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );

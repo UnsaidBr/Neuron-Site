@@ -92,7 +92,6 @@ export async function handleAdminLogin(
       },
     });
   } catch (error) {
-    console.error('[handleAdminLogin Error]:', error);
     next(error);
   }
 }

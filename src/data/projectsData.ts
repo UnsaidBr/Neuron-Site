@@ -51,7 +51,7 @@ export const HERO_SLIDES = [
 export const METRICS: MetricItem[] = [
   {
     value: '03',
-    label: 'Projetos Estruturantes',
+    label: 'Projetos',
     description: 'Buda, LLM Café e Marcha+ conectando ciência de ponta e sociedade.',
     highlightColor: 'from-[#F6D88B] via-[#D91B7D] to-[#8435FF]',
   },

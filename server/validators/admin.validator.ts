@@ -40,10 +40,8 @@ export const updateContactStatusSchema = z
   .object({
     status: z
       .enum(['unread', 'read', 'archived', 'in_progress', 'replied'], {
-        errorMap: () => ({
-          message:
-            'Status inválido. Valores aceitos: unread, read, archived, in_progress, replied.',
-        }),
+        message:
+          'Status inválido. Valores aceitos: unread, read, archived, in_progress, replied.',
       }),
   })
   .strict();

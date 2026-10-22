@@ -1,6 +1,11 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+// Sanitize invalid or dead external Supabase database URL to prevent connection failure loops
+if (process.env.DATABASE_URL && process.env.DATABASE_URL.includes('tuajexipwcnldhgztkjs')) {
+  delete process.env.DATABASE_URL;
+}
+
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';

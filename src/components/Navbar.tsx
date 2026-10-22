@@ -15,7 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks: { id: PageTab; label: string }[] = [
-    { id: 'equipe-sobre', label: 'Equipe e Sobre' },
+    { id: 'equipe-sobre', label: 'Equipe & Sobre' },
     { id: 'publicacoes-projetos', label: 'Publicações & Projetos' },
     { id: 'parcerias', label: 'Parcerias' },
     { id: 'contatos', label: 'Contatos' },

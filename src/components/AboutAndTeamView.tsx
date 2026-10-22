@@ -2,12 +2,10 @@ import React from 'react';
 import {
   Users,
   Globe2,
-  Sparkles,
   MapPin,
   Cpu,
   GraduationCap,
   Award,
-  ArrowRight,
   CheckCircle2,
   BookOpen,
   Network,
@@ -21,14 +19,11 @@ import { OptimizedImage } from './OptimizedImage';
 import { PageTab } from '../types';
 
 interface AboutAndTeamViewProps {
-  onNavigateTab: (tab: PageTab) => void;
-  onOpenTraineeModal: () => void;
+  onNavigateTab?: (tab: PageTab) => void;
+  onOpenTraineeModal?: () => void;
 }
 
-export const AboutAndTeamView: React.FC<AboutAndTeamViewProps> = ({
-  onNavigateTab,
-  onOpenTraineeModal,
-}) => {
+export const AboutAndTeamView: React.FC<AboutAndTeamViewProps> = () => {
   const leadership = [
     {
       role: 'Coordenação Docente & Orientação',
@@ -115,12 +110,12 @@ export const AboutAndTeamView: React.FC<AboutAndTeamViewProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-8 space-y-4">
             <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-[1.1]">
-              Equipe &amp; Manifesto da <br />
+              Mais do que um{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#DB2777] to-[#7C3AED]">
-                Colmeia NEURON
+                núcleo
               </span>
             </h1>
-            <p className="text-white/70 text-base sm:text-lg font-light leading-relaxed max-w-3xl">
+            <p className="text-white/70 text-xs sm:text-sm font-light leading-relaxed max-w-3xl">
               O <strong className="text-white font-medium">NEURON</strong> é o Núcleo de Estudos e Pesquisa em Robótica e Inteligência Artificial sediado no{' '}
               <span className="text-white font-medium">Departamento de Ciência da Computação (DCC)</span> da Universidade Federal de Lavras (UFLA). Um ambiente colaborativo onde mentes curiosas transformam teoria em impacto palpável.
             </p>
@@ -294,46 +289,6 @@ export const AboutAndTeamView: React.FC<AboutAndTeamViewProps> = ({
           ))}
         </div>
       </div>
-
-      {/* Call to Action: Be a Trainee / Join the Hive */}
-      <ScrollReveal direction="up" duration={0.65} className="w-full">
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#7C3AED]/20 via-[#DB2777]/15 to-[#F59E0B]/10 border border-[#7C3AED]/30 relative overflow-hidden shadow-2xl">
-          <div className="relative z-10 max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[10px] font-mono text-white uppercase tracking-widest font-bold">
-              <Sparkles className="w-3 h-3 text-[#F59E0B]" />
-              <span>PROCESSO DE SELEÇÃO CONTÍNUA // TRAINEE</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-              Faça Parte da Colmeia NEURON
-            </h2>
-
-            <p className="text-white/80 text-sm sm:text-base leading-relaxed font-light">
-              Você é estudante da UFLA apaixonado por robótica, inteligência artificial, visão computacional ou desenvolvimento de hardware? Buscamos pessoas motivadas a aprender e dispostas a deixar sua marca.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
-                type="button"
-                onClick={onOpenTraineeModal}
-                className="px-6 py-3 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-xs uppercase tracking-widest font-bold flex items-center gap-2 transition-all cursor-pointer shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:scale-105"
-              >
-                <span>Inscreva-se como Trainee</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => onNavigateTab('publicacoes-projetos')}
-                className="px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs uppercase tracking-widest font-bold border border-white/10 flex items-center gap-2 transition-all cursor-pointer"
-              >
-                <span>Conhecer Publicações &amp; Projetos</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
     </div>
   );
 };

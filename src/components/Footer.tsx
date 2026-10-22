@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
           {/* Col 2: Projetos em Destaque */}
           <div>
             <h4 className="text-[10px] font-mono font-bold text-[#F59E0B] uppercase tracking-[0.25em] mb-4">
-              Projetos Estruturantes
+              Projetos
             </h4>
             <ul className="space-y-2.5 text-xs text-white/50">
               <li>
@@ -97,7 +97,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
                   onClick={() => onNavigateTab('equipe-sobre')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Equipe e Sobre
+                  Equipe &amp; Sobre
                 </button>
               </li>
               <li>

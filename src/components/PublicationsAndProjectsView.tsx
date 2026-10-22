@@ -106,7 +106,7 @@ export const PublicationsAndProjectsView: React.FC<PublicationsAndProjectsViewPr
         <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-[1.1]">
           Publicações &amp;{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#DB2777] to-[#7C3AED]">
-            Projetos Estruturantes
+            Projetos
           </span>
         </h1>
         <p className="text-white/60 text-base sm:text-lg font-light max-w-3xl leading-relaxed">
