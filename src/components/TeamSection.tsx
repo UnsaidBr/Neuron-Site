@@ -2,6 +2,7 @@ import React from 'react';
 import { Users, Globe2, Sparkles, MapPin, Cpu } from 'lucide-react';
 import { ScrollReveal, StaggerContainer, StaggerItem } from './ScrollReveal';
 import { OptimizedImage } from './OptimizedImage';
+import neuronTeamPhoto from '../assets/images/neuron_team_enhanced_1795396077158.jpg';
 
 export const TeamSection: React.FC = () => {
   return (
@@ -25,25 +26,26 @@ export const TeamSection: React.FC = () => {
         {/* Prominent Team Showcase Image Banner - Immersive UI double-layer frame */}
         <ScrollReveal direction="up" delay={0.15} duration={0.7} className="w-full max-w-6xl mx-auto">
           <div className="bg-[#111]/80 backdrop-blur-sm border border-white/10 rounded-2xl p-1 relative overflow-hidden group">
-            <div className="relative rounded-xl overflow-hidden bg-[#0A0A0A]/90 border border-white/5 flex items-center justify-center min-h-[340px] sm:min-h-[480px] lg:min-h-[540px]">
+            <div className="relative rounded-xl overflow-hidden bg-[#0A0A0A]/90 border border-white/5 aspect-[3/2] w-full">
               <OptimizedImage
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkFAkl4VEIIrQrHGzFoJF5O-4tYCxAg5mAnj941-VCjjGpvp0ANbjy_aIPuzqBHC4udZGVGmRgFrQoo4P5BN9MiNC8Iia5Ht8A8Cf3yHSB-L5WgDa7yvNR3C8njizZVBfN7xOveAJLoRE9jLHvkHFWeXYIXgGaVxhBLnQCQruXqCn8-lnpoJQI5eli0pG5aeXLZ2r2qRjvlBibHdgmR07P10lBeFJW5pCwXMnmyxmUY2w4-9rm5zYhiuslBaQcOdwg5w"
+                src={neuronTeamPhoto}
                 alt="Equipe e Pesquisadores NEURON UFLA"
-                width={1200}
-                height={675}
+                width={1500}
+                height={1000}
+                aspectRatio="3/2"
+                containerClassName="w-full h-full"
                 sizes="(max-width: 1200px) 100vw, 1150px"
-                className="w-full h-auto object-contain max-h-[580px] drop-shadow-md group-hover:scale-105 transition-transform duration-700 filter brightness-95"
+                className="w-full h-full object-cover object-center group-hover:scale-[1.015] transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none z-[2]" />
 
-              {/* Badges on Image */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex items-center justify-between pointer-events-none">
-                <span className="px-4 py-2 text-xs sm:text-sm font-mono font-medium rounded-lg bg-black/80 backdrop-blur-md text-[#F59E0B] border border-white/10 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#DB2777] animate-pulse" />
-                  Equipe &amp; Pesquisadores NEURON • UFLA
+              {/* Caption Bar on Image */}
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex items-center justify-between pointer-events-none z-[3]">
+                <span className="px-4 py-2 text-xs sm:text-sm font-mono font-medium rounded-lg bg-black/80 backdrop-blur-md text-[#F59E0B] border border-white/15">
+                  Equipe &amp; Pesquisadores NEURON · UFLA
                 </span>
-                <span className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-medium rounded-lg bg-black/70 text-white/80 border border-white/10">
-                  <MapPin className="w-3.5 h-3.5 text-[#7C3AED]" />
+                <span className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-medium rounded-lg bg-black/75 backdrop-blur-md text-white/85 border border-white/15">
+                  <MapPin className="w-3.5 h-3.5 text-[#A78BFA]" />
                   LAVRAS / MG
                 </span>
               </div>

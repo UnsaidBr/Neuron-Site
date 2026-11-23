@@ -1,6 +1,13 @@
 import { Project, MethodologyStage, MetricItem } from '../types';
-import llmCafeImage from '../assets/images/llm_cafe_project_1789673915971.jpg';
-import marchaPlusImage from '../assets/images/marcha_plus_project_1789673925406.jpg';
+import roboBudistaImage from '../assets/images/robo_budista_enhanced_1795396261017.jpg';
+import llmCafeImage from '../assets/images/llm_cafe_enhanced_1795396247614.jpg';
+import marchaPlusImage from '../assets/images/marcha_plus_enhanced_1795396248749.jpg';
+
+export const PROJECT_IMAGE_OVERRIDES: Record<string, string> = {
+  'flagship-robo-budista': roboBudistaImage,
+  'llm-cafe': llmCafeImage,
+  'marcha-plus': marchaPlusImage,
+};
 
 export const HERO_SLIDES = [
   {
@@ -10,8 +17,7 @@ export const HERO_SLIDES = [
     title: 'Estátuas Budistas Interativas',
     description:
       'Pesquisa interdisciplinar combinando robótica humanoide teomórfica, IA musical e gestos de empatia natural para o Museu Nacional da Coreia do Sul em cooperação Coreia-Reino Unido-Brasil.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuA7TmftJVOeygU8Lj028mSw6Owltraeyg9PJ0zNyiiRgO0XdElwQH2FpBesdyNtCFCCOmZIJr3-b6davy9lLnr-VPWMP2hclwx-PYBqJa0lLBrLjVDofCd4KO98GUPrxSk--L84oHSRejSLVPAwH5SyAjZvvODa7ZhJS7smXeyQHAb-ap_LqSLxeC3Vz8aRrskNg4Bqzj8eMdPVJhdfeq1EvMf4MOi6eX38IpZpx6blwY4Y-GSu9G6jtAmRAeokVITZ-A',
+    image: roboBudistaImage,
     status: '● STATUS: EM OPERAÇÃO',
     highlight: 'SAIU NA FAPESP ↗',
     color: '#D91B7D',
@@ -85,8 +91,7 @@ export const FLAGSHIP_PROJECT: Project = {
   badge: 'UFLA • FAPESP',
   description:
     'Desenvolvimento interdisciplinar pioneiro concebido no NEURON que combina robótica humanoide teomórfica, IA musical generativa e gestos de empatia calibrados milimetricamente. A obra possibilita experiências culturais e contemplativas imersivas para visitantes internacionais no coração de Seul.',
-  image:
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuDBnZ1zvVzyY1EZzApptjsn2gEkKZP92b22ZqWBHBMlM6hQ94YsO0C6gNJDSZi2LuTw05Q-gaFZokULW-jfWUNX8D0NQkedEaKaFpHeMpn1dbGz2Mig4KiZqHNhiIkd1fQsNaFvJe8bb6qPtlcjc8wKx24qdc3hL0AHFOb7NTx05O74K13oFl1OUrbZVjsplEpG-sa9Y62tTaPWDoc2SDPJ2Jl2ZbuqtiMIqQI7o8Wujc1y5WBOdFI2K09BpKtu-QHzYA',
+  image: roboBudistaImage,
   status: 'Em Operação',
   featured: true,
   tags: ['#RobôBudista', '#IA_Interativa', '#CoreiaDoSul', '#HRI', '#Teomorfismo'],

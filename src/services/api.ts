@@ -1,5 +1,5 @@
 import { Project, Publication, Partner, ContactMessage, TraineeApplication } from '../types';
-import { PROJECTS_LIST } from '../data/projectsData';
+import { PROJECTS_LIST, PROJECT_IMAGE_OVERRIDES } from '../data/projectsData';
 import { PUBLICATIONS_LIST } from '../data/publicationsData';
 import { PARTNERS_LIST } from '../data/partnersData';
 
@@ -7,13 +7,14 @@ import { PARTNERS_LIST } from '../data/partnersData';
  * Base URL for API requests.
  * Uses VITE_API_URL if configured, otherwise relative path '' to hit Express/Vite server.
  */
-const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') || '';
+export const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') || '';
 
 export interface ApiResponse<T> {
   success: boolean;
   count?: number;
   data: T;
   message?: string;
+  error?: string;
   source?: 'api' | 'fallback';
 }
 
@@ -35,9 +36,9 @@ export class ApiError extends Error {
 }
 
 /**
- * Generic fetch wrapper with timeout, JSON parsing and consistent error normalization.
+ * Generic fetch wrapper with JSON parsing and consistent error normalization.
  */
-async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+export async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
   const headers = new Headers(options.headers || {});
 
@@ -46,6 +47,7 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   }
 
   const config: RequestInit = {
+    credentials: 'include',
     ...options,
     headers,
   };
@@ -79,7 +81,7 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
         ? 'Muitas requisições enviadas. Aguarde alguns instantes antes de tentar novamente.'
         : `Erro na requisição (código ${response.status}).`;
 
-    const errorMessage = data?.message || defaultMessage;
+    const errorMessage = data?.message || data?.error || defaultMessage;
     const errors: ApiErrorDetail[] = data?.errors || [];
 
     throw new ApiError(errorMessage, response.status, errors);
@@ -100,7 +102,11 @@ export async function getProjects(): Promise<{ projects: Project[]; source: 'api
   try {
     const res = await request<ApiResponse<Project[]>>('/api/projects');
     if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
-      return { projects: res.data, source: 'api' };
+      const normalizedProjects = res.data.map((project) => ({
+        ...project,
+        image: PROJECT_IMAGE_OVERRIDES[project.id] || project.image,
+      }));
+      return { projects: normalizedProjects, source: 'api' };
     }
     return { projects: PROJECTS_LIST, source: 'fallback' };
   } catch (err) {

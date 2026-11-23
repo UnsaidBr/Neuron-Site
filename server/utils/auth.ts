@@ -54,7 +54,12 @@ export function getJwtSecret(): string {
   if (secret && secret.trim().length > 0) {
     return secret.trim();
   }
-  // Safe default fallback for development / container deployment when JWT_SECRET env var is omitted
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error(
+      'Configuração crítica ausente: JWT_SECRET não está definido no ambiente de produção.'
+    );
+  }
+  // Development-only fallback when JWT_SECRET is omitted locally
   return 'neuron-ufla-dcc-jwt-secret-key-development-2026-secure-admin-token-sign';
 }
 
@@ -122,11 +127,52 @@ export function verifyAdminToken(token: string): AdminJwtPayload {
 export const ADMIN_COOKIE_NAME = 'neuron_admin_token';
 export const ADMIN_COOKIE_MAX_AGE_MS = 8 * 60 * 60 * 1000; // 8 hours in milliseconds
 
-export function getAdminCookieOptions(): CookieOptions {
-  const isProduction = process.env.NODE_ENV === 'production';
+export function isHttpsRequest(req?: {
+  secure?: boolean;
+  headers?: Record<string, string | string[] | undefined>;
+}): boolean {
+  if (!req) return process.env.NODE_ENV === 'production';
+  if (req.secure) return true;
+
+  const readHeader = (name: string): string => {
+    const val = req.headers?.[name];
+    return (Array.isArray(val) ? val[0] : val || '').toLowerCase();
+  };
+
+  const forwardedProto = readHeader('x-forwarded-proto');
+  if (forwardedProto.includes('https')) return true;
+
+  const forwarded = readHeader('forwarded');
+  if (forwarded.includes('proto=https')) return true;
+
+  if (readHeader('x-forwarded-ssl') === 'on') return true;
+
+  const origin = readHeader('origin');
+  if (origin.startsWith('https://')) return true;
+
+  const referer = readHeader('referer');
+  if (referer.startsWith('https://')) return true;
+
+  const host = readHeader('x-forwarded-host') || readHeader('host');
+  if (host.includes('.run.app')) return true;
+
+  return false;
+}
+
+export function getAdminCookieOptions(isHttps = process.env.NODE_ENV === 'production'): CookieOptions {
+  if (isHttps) {
+    return {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      path: '/',
+      maxAge: ADMIN_COOKIE_MAX_AGE_MS,
+      ...( { partitioned: true } as Partial<CookieOptions> ),
+    };
+  }
   return {
     httpOnly: true,
-    secure: isProduction,
+    secure: false,
     sameSite: 'lax',
     path: '/',
     maxAge: ADMIN_COOKIE_MAX_AGE_MS,
@@ -137,18 +183,27 @@ export function getAdminCookieOptions(): CookieOptions {
  * CSRF Protection Utilities for Cookie-based Admin Operations
  * Double-Submit Cookie Pattern (OWASP recommendation for SPAs):
  * - A random cryptographically secure token is generated.
- * - Set in a readable cookie 'neuron_csrf_token' (SameSite=Lax).
+ * - Set in a readable cookie 'neuron_csrf_token'.
  * - Client reads this cookie and includes it in header 'X-CSRF-Token'.
  * - Backend verifies header matches cookie for state-changing requests (POST, PATCH, PUT, DELETE).
  */
 export const CSRF_COOKIE_NAME = 'neuron_csrf_token';
 export const CSRF_HEADER_NAME = 'x-csrf-token';
 
-export function getCsrfCookieOptions(): CookieOptions {
-  const isProduction = process.env.NODE_ENV === 'production';
+export function getCsrfCookieOptions(isHttps = process.env.NODE_ENV === 'production'): CookieOptions {
+  if (isHttps) {
+    return {
+      httpOnly: false, // Must be readable by client JS to include in X-CSRF-Token header
+      secure: true,
+      sameSite: 'none',
+      path: '/',
+      maxAge: ADMIN_COOKIE_MAX_AGE_MS,
+      ...( { partitioned: true } as Partial<CookieOptions> ),
+    };
+  }
   return {
-    httpOnly: false, // Must be readable by client JS to include in X-CSRF-Token header
-    secure: isProduction,
+    httpOnly: false,
+    secure: false,
     sameSite: 'lax',
     path: '/',
     maxAge: ADMIN_COOKIE_MAX_AGE_MS,

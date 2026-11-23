@@ -7,6 +7,7 @@ import {
   CSRF_COOKIE_NAME,
   getAdminCookieOptions,
   getCsrfCookieOptions,
+  isHttpsRequest,
 } from '../utils/auth.js';
 import { generateCsrfToken } from '../middlewares/csrfProtection.js';
 import { loginSchema } from '../validators/admin.validator.js';
@@ -71,8 +72,9 @@ export async function handleAdminLogin(
     const csrfToken = generateCsrfToken();
 
     // 6. Set Cookies
-    res.cookie(ADMIN_COOKIE_NAME, token, getAdminCookieOptions());
-    res.cookie(CSRF_COOKIE_NAME, csrfToken, getCsrfCookieOptions());
+    const isHttps = isHttpsRequest(req);
+    res.cookie(ADMIN_COOKIE_NAME, token, getAdminCookieOptions(isHttps));
+    res.cookie(CSRF_COOKIE_NAME, csrfToken, getCsrfCookieOptions(isHttps));
 
     // 7. Update lastLoginAt in database asynchronously
     await prisma.adminUser.update({
@@ -108,12 +110,13 @@ export async function handleAdminLogout(
 ): Promise<void> {
   try {
     // Clear cookies with matching options
+    const isHttps = isHttpsRequest(req);
     res.clearCookie(ADMIN_COOKIE_NAME, {
-      ...getAdminCookieOptions(),
+      ...getAdminCookieOptions(isHttps),
       maxAge: 0,
     });
     res.clearCookie(CSRF_COOKIE_NAME, {
-      ...getCsrfCookieOptions(),
+      ...getCsrfCookieOptions(isHttps),
       maxAge: 0,
     });
 

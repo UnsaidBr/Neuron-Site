@@ -1,11 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-// Sanitize invalid or dead external Supabase database URL to prevent connection failure loops
-if (process.env.DATABASE_URL && process.env.DATABASE_URL.includes('tuajexipwcnldhgztkjs')) {
-  delete process.env.DATABASE_URL;
-}
-
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -21,6 +16,8 @@ const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
+  // Trust reverse proxy headers (multi-hop X-Forwarded-Proto) for HTTPS cookie detection
+  app.set('trust proxy', true);
   // Ensure the app always binds to port 3000 as required by the dev environment and reverse proxy
   const PORT = process.env.DEFAULT_APP_PORT ? parseInt(process.env.DEFAULT_APP_PORT, 10) : 3000;
   const isProduction = process.env.NODE_ENV === 'production';
@@ -40,7 +37,7 @@ async function startServer() {
         }
       },
       credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'x-csrf-token'],
     })
   );

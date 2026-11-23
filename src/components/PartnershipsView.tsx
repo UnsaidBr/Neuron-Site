@@ -83,14 +83,13 @@ export const PartnershipsView: React.FC = () => {
     <div className="space-y-24 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header Section */}
       <ScrollReveal direction="up" duration={0.65} className="space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[10px] font-mono text-[#10B981] uppercase tracking-widest font-bold">
-          <Handshake className="w-3 h-3 text-[#10B981]" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C3AED]/10 border border-[#7C3AED]/30 text-[10px] font-mono text-[#A78BFA] uppercase tracking-widest font-bold">
+          <Handshake className="w-3 h-3 text-[#A78BFA]" />
           <span>REDE INSTITUCIONAL &amp; COOPERAÇÃO // DCC • UFLA</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-[1.1]">
-          Parcerias &amp;{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] via-[#F59E0B] to-[#7C3AED]">
-            Ecossistema Global
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#DB2777] to-[#7C3AED]">
+            Parcerias
           </span>
         </h1>
         <p className="text-white/60 text-base sm:text-lg font-light max-w-3xl leading-relaxed">
@@ -108,7 +107,7 @@ export const PartnershipsView: React.FC = () => {
           </div>
           <div className="space-y-1">
             <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Instituições Parceiras</span>
-            <div className="text-2xl sm:text-3xl font-bold text-[#10B981]">{partners.length}+ Ativas</div>
+            <div className="text-2xl sm:text-3xl font-bold text-[#A78BFA]">{partners.length}+ Ativas</div>
             <p className="text-[11px] text-white/50">Universidades, Museus e Cooperativas</p>
           </div>
           <div className="space-y-1">
@@ -128,7 +127,7 @@ export const PartnershipsView: React.FC = () => {
       <div className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/5 pb-4">
           <div>
-            <span className="text-[10px] font-mono text-[#10B981] uppercase tracking-widest font-bold">
+            <span className="text-[10px] font-mono text-[#A78BFA] uppercase tracking-widest font-bold">
               01. DIRETÓRIO DE COOPERAÇÃO
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
@@ -144,7 +143,7 @@ export const PartnershipsView: React.FC = () => {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                   activeCategory === cat.id
-                    ? 'bg-[#10B981] text-black font-bold shadow-[0_0_15px_rgba(16,185,129,0.3)]'
+                    ? 'bg-[#7C3AED] text-white font-bold shadow-[0_0_15px_rgba(124,58,237,0.35)]'
                     : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/5'
                 }`}
               >
@@ -158,10 +157,10 @@ export const PartnershipsView: React.FC = () => {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPartners.map((partner) => (
             <StaggerItem key={partner.id}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-[#0D0D0D]/90 border border-white/10 hover:border-[#10B981]/40 transition-all flex flex-col justify-between space-y-6 group">
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-[#0D0D0D]/90 border border-white/10 hover:border-[#7C3AED]/40 transition-all flex flex-col justify-between space-y-6 group">
                 <div className="space-y-4">
                   <div className="flex items-start justify-between gap-3">
-                    <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono uppercase tracking-wider text-[#10B981] font-bold">
+                    <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono uppercase tracking-wider text-[#A78BFA] font-bold">
                       {partner.badge}
                     </span>
                     <span className="text-[11px] font-mono text-white/40 flex items-center gap-1">
@@ -171,7 +170,7 @@ export const PartnershipsView: React.FC = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-white group-hover:text-[#10B981] transition-colors leading-snug">
+                    <h3 className="text-lg font-bold text-white group-hover:text-[#A78BFA] transition-colors leading-snug">
                       {partner.name}
                     </h3>
                     <p className="text-xs text-white/50 mt-1 leading-relaxed font-light">
@@ -206,7 +205,7 @@ export const PartnershipsView: React.FC = () => {
                       href={partner.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-[#10B981] hover:underline pt-1"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-[#A78BFA] hover:underline pt-1"
                     >
                       <span>Portal Oficial</span>
                       <ExternalLink className="w-3 h-3" />
@@ -264,9 +263,9 @@ export const PartnershipsView: React.FC = () => {
           </div>
           <a
             href="mailto:neuron@dcc.ufla.br?subject=Proposta%20de%20Parceria%20-%20NEURON"
-            className="px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-mono text-xs border border-white/10 hover:border-[#10B981]/50 flex items-center gap-2 transition-all shrink-0 cursor-pointer"
+            className="px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-mono text-xs border border-white/10 hover:border-[#7C3AED]/50 flex items-center gap-2 transition-all shrink-0 cursor-pointer"
           >
-            <Mail className="w-4 h-4 text-[#10B981]" />
+            <Mail className="w-4 h-4 text-[#A78BFA]" />
             <span>neuron@dcc.ufla.br</span>
           </a>
         </div>

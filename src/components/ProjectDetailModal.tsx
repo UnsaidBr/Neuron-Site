@@ -72,10 +72,11 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               height={506}
               priority={true}
               aspectRatio="16/9"
+              containerClassName="w-full h-full"
               sizes="(max-width: 768px) 100vw, 850px"
-              className="w-full h-full object-cover object-center filter brightness-95"
+              className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-60 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/60 via-transparent to-transparent pointer-events-none z-[2]" />
           </div>
 
           {/* Content Tabs / Sections */}

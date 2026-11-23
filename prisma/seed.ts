@@ -18,8 +18,7 @@ const SEED_PROJECTS = [
     badge: 'UFLA • FAPESP',
     description:
       'Desenvolvimento interdisciplinar pioneiro concebido no NEURON que combina robótica humanoide teomórfica, IA musical generativa e gestos de empatia calibrados milimetricamente. A obra possibilita experiências culturais e contemplativas imersivas para visitantes internacionais no coração de Seul.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDBnZ1zvVzyY1EZzApptjsn2gEkKZP92b22ZqWBHBMlM6hQ94YsO0C6gNJDSZi2LuTw05Q-gaFZokULW-jfWUNX8D0NQkedEaKaFpHeMpn1dbGz2Mig4KiZqHNhiIkd1fQsNaFvJe8bb6qPtlcjc8wKx24qdc3hL0AHFOb7NTx05O74K13oFl1OUrbZVjsplEpG-sa9Y62tTaPWDoc2SDPJ2Jl2ZbuqtiMIqQI7o8Wujc1y5WBOdFI2K09BpKtu-QHzYA',
+    image: '/src/assets/images/robo_budista_enhanced_1795396261017.jpg',
     status: 'Em Operação',
     featured: true,
     tags: ['#RobôBudista', '#IA_Interativa', '#CoreiaDoSul', '#HRI', '#Teomorfismo'],
@@ -71,7 +70,7 @@ const SEED_PROJECTS = [
     badge: 'UFLA • POLO CAFEEIRO',
     description:
       'Modelo de linguagem (LLM) fine-tuned com arquitetura Retrieval-Augmented Generation (RAG) treinado no acervo científico e agronômico da UFLA e da cafeicultura brasileira. Oferece suporte inteligente em tempo real a cafeicultores, cooperativas e agrônomos na diagnose de pragas, manejo pós-colheita, classificação sensorial e sustentabilidade do café.',
-    image: '/src/assets/images/llm_cafe_project_1789673915971.jpg',
+    image: '/src/assets/images/llm_cafe_enhanced_1795396247614.jpg',
     status: 'Em Pesquisa',
     featured: false,
     tags: ['#LLMCafé', '#IAGenerativa', '#RAG', '#CafeiculturaUFLA', '#AgroTech'],
@@ -115,7 +114,7 @@ const SEED_PROJECTS = [
     badge: 'UFLA • VISÃO & SAÚDE',
     description:
       'Plataforma inovadora concebida no NEURON combinando visão computacional markerless (sem marcadores físicos reflexivos), aprendizado profundo e modelos biomecânicos para análise cinemática precisa da marcha humana, auxiliando no diagnóstico precoce de distúrbios motores e reabilitação fisioterapêutica acessível.',
-    image: '/src/assets/images/marcha_plus_project_1789673925406.jpg',
+    image: '/src/assets/images/marcha_plus_enhanced_1795396248749.jpg',
     status: 'Em Teste',
     featured: false,
     tags: [
@@ -285,9 +284,16 @@ async function main() {
   }
 
   // 4. Seed Initial Superadmin (Idempotent, strictly from environment secrets)
-  const initialAdminEmail = (process.env.INITIAL_ADMIN_EMAIL || 'admin@neuron.dcc.ufla.br').trim().toLowerCase();
-  const initialAdminPassword = process.env.INITIAL_ADMIN_PASSWORD || 'NeuronAdminSecret2026!';
-  const initialAdminName = process.env.INITIAL_ADMIN_NAME || 'Coordenação NEURON';
+  const rawEmail = process.env.INITIAL_ADMIN_EMAIL?.trim().toLowerCase();
+  const initialAdminPassword = process.env.INITIAL_ADMIN_PASSWORD;
+  const initialAdminName = process.env.INITIAL_ADMIN_NAME?.trim();
+
+  if (!rawEmail || !initialAdminPassword || !initialAdminName) {
+    throw new Error(
+      '[Prisma Seed] Variáveis obrigatórias ausentes: defina INITIAL_ADMIN_EMAIL, INITIAL_ADMIN_PASSWORD e INITIAL_ADMIN_NAME antes de executar o seed.'
+    );
+  }
+  const initialAdminEmail = rawEmail;
 
   console.log('[Prisma Seed] Seeding initial administrator account...');
   const saltRounds = 12;

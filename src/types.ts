@@ -106,3 +106,73 @@ export type PageTab =
   | 'contatos'
   | 'home'
   | 'projetos';
+
+export interface AdminUserProfile {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
+
+export type AdminContactStatus =
+  | 'unread'
+  | 'read'
+  | 'in_progress'
+  | 'replied'
+  | 'archived';
+
+export interface AdminContactRecord {
+  id: string;
+  name: string;
+  email: string;
+  institution?: string | null;
+  phone?: string | null;
+  subject: string;
+  topic: string;
+  message: string;
+  status: AdminContactStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AdminPartnershipRecord {
+  id: string;
+  name: string;
+  email: string;
+  institution: string;
+  type: string;
+  scope: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AdminTraineeRecord {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  course: string;
+  period: string;
+  areaOfInterest: string;
+  motivation: string;
+  type: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AdminPagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+  hasMore: boolean;
+}
+
+export interface AdminPaginatedResponse<T> {
+  success: boolean;
+  data: T[];
+  pagination: AdminPagination;
+}
+

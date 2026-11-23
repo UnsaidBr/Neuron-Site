@@ -17,6 +17,7 @@ import { NeuronBee } from './NeuronBee';
 import { NeuronLogo } from './NeuronLogo';
 import { OptimizedImage } from './OptimizedImage';
 import { PageTab } from '../types';
+import neuronTeamPhoto from '../assets/images/neuron_team_enhanced_1795396077158.jpg';
 
 interface AboutAndTeamViewProps {
   onNavigateTab?: (tab: PageTab) => void;
@@ -145,26 +146,28 @@ export const AboutAndTeamView: React.FC<AboutAndTeamViewProps> = () => {
       {/* Official Team Photo Showcase Banner */}
       <ScrollReveal direction="up" delay={0.1} duration={0.7} className="w-full">
         <div className="bg-[#111]/80 backdrop-blur-sm border border-white/10 rounded-2xl p-1.5 relative overflow-hidden group shadow-2xl">
-          <div className="relative rounded-xl overflow-hidden bg-[#0A0A0A] border border-white/5 flex items-center justify-center min-h-[340px] sm:min-h-[480px] lg:min-h-[560px]">
+          <div className="relative rounded-xl overflow-hidden bg-[#0A0A0A] border border-white/5 aspect-[3/2] w-full">
             <OptimizedImage
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkFAkl4VEIIrQrHGzFoJF5O-4tYCxAg5mAnj941-VCjjGpvp0ANbjy_aIPuzqBHC4udZGVGmRgFrQoo4P5BN9MiNC8Iia5Ht8A8Cf3yHSB-L5WgDa7yvNR3C8njizZVBfN7xOveAJLoRE9jLHvkHFWeXYIXgGaVxhBLnQCQruXqCn8-lnpoJQI5eli0pG5aeXLZ2r2qRjvlBibHdgmR07P10lBeFJW5pCwXMnmyxmUY2w4-9rm5zYhiuslBaQcOdwg5w"
+              src={neuronTeamPhoto}
               alt="Equipe e Pesquisadores NEURON UFLA"
-              width={1200}
-              height={675}
-              sizes="(max-width: 1200px) 100vw, 1150px"
-              className="w-full h-auto object-contain max-h-[600px] drop-shadow-md group-hover:scale-105 transition-transform duration-700 filter brightness-95"
+              width={1500}
+              height={1000}
+              priority={true}
+              aspectRatio="3/2"
+              containerClassName="w-full h-full"
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="w-full h-full object-cover object-center group-hover:scale-[1.015] transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/95 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none z-[2]" />
 
-            {/* Badges on Image */}
-            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
-              <span className="px-4 py-2 text-xs sm:text-sm font-mono font-medium rounded-lg bg-black/85 backdrop-blur-md text-[#F59E0B] border border-white/10 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#DB2777] animate-pulse" />
-                Fotografia Oficial • Equipe &amp; Pesquisadores NEURON (DCC/UFLA)
+            {/* Caption Bar on Image */}
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-center justify-between gap-3 pointer-events-none z-[3]">
+              <span className="px-4 py-2 text-xs sm:text-sm font-mono font-medium rounded-lg bg-black/80 backdrop-blur-md text-[#F59E0B] border border-white/15">
+                Equipe &amp; Pesquisadores NEURON · DCC/UFLA
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-medium rounded-lg bg-black/80 text-white/80 border border-white/10">
-                <MapPin className="w-3.5 h-3.5 text-[#7C3AED]" />
-                Câmpus Universitário • Lavras - MG
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-medium rounded-lg bg-black/75 backdrop-blur-md text-white/85 border border-white/15">
+                <MapPin className="w-3.5 h-3.5 text-[#A78BFA]" />
+                Câmpus Universitário · Lavras - MG
               </span>
             </div>
           </div>

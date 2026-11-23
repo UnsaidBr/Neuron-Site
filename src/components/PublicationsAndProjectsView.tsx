@@ -209,22 +209,24 @@ export const PublicationsAndProjectsView: React.FC<PublicationsAndProjectsViewPr
                   {/* Left: Image Preview */}
                   <div
                     onClick={() => onSelectProject(project)}
-                    className="lg:col-span-5 rounded-2xl overflow-hidden bg-black/50 border border-white/10 aspect-video sm:aspect-[16/10] relative group cursor-pointer"
+                    className="lg:col-span-5 rounded-2xl overflow-hidden bg-black/50 border border-white/10 aspect-video relative group cursor-pointer"
                   >
                     <OptimizedImage
                       src={project.image}
                       alt={project.title}
                       width={800}
-                      height={500}
+                      height={450}
+                      aspectRatio="16/9"
+                      containerClassName="w-full h-full"
                       sizes="(max-width: 1024px) 100vw, 480px"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95"
+                      className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white pointer-events-none">
-                      <span className="px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-white/10 font-mono text-[11px]">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent opacity-85 group-hover:opacity-65 transition-opacity pointer-events-none z-[2]" />
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white pointer-events-none z-[3]">
+                      <span className="px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-white/15 font-mono text-[11px]">
                         {project.categoryLabel}
                       </span>
-                      <span className="px-2.5 py-1 rounded bg-[#7C3AED]/80 font-bold text-[11px] flex items-center gap-1">
+                      <span className="px-2.5 py-1 rounded bg-[#7C3AED]/90 font-bold text-[11px] flex items-center gap-1">
                         <span>Ver Estudo</span>
                         <ArrowRight className="w-3 h-3" />
                       </span>

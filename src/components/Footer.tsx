@@ -6,9 +6,10 @@ import { NeuronBee } from './NeuronBee';
 
 interface FooterProps {
   onNavigateTab: (tab: PageTab) => void;
+  onNavigateAdmin?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigateTab, onNavigateAdmin }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -124,6 +125,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTab }) => {
                   Fale Conosco
                 </button>
               </li>
+              {onNavigateAdmin && (
+                <li>
+                  <a
+                    href="/admin"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigateAdmin();
+                    }}
+                    className="text-white/40 hover:text-[#F59E0B] transition-colors cursor-pointer inline-block"
+                  >
+                    Área Administrativa
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
 

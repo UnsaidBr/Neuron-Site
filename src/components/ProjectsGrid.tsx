@@ -164,24 +164,25 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
                 <div className="relative bg-[#0A0A0A]/90 rounded-xl p-5 border border-white/5 flex flex-col justify-between h-full space-y-4">
                   <div>
                     {/* Card Thumbnail with Optimized WebP Image */}
-                    <div className="-mx-5 -mt-5 mb-4 h-48 overflow-hidden rounded-t-xl relative bg-black/40 border-b border-white/5">
+                    <div className="-mx-5 -mt-5 mb-4 aspect-video overflow-hidden rounded-t-xl relative bg-black/40 border-b border-white/5">
                       <OptimizedImage
                         src={project.image}
                         alt={project.title}
                         width={600}
-                        height={350}
+                        height={338}
                         aspectRatio="16/9"
+                        containerClassName="w-full h-full"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
+                        className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-80 pointer-events-none" />
-                      <div className="absolute top-3 right-3 pointer-events-none">
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/80 via-transparent to-transparent opacity-80 pointer-events-none z-[2]" />
+                      <div className="absolute top-3 right-3 pointer-events-none z-[3]">
                         <span className="px-2.5 py-1 text-[10px] font-mono font-bold uppercase rounded bg-black/80 backdrop-blur-md text-[#F59E0B] border border-[#F59E0B]/30">
                           {project.badge}
                         </span>
                       </div>
-                      <div className="absolute bottom-2.5 left-3 pointer-events-none">
-                        <span className="px-2 py-0.5 text-[9px] font-mono uppercase rounded bg-black/70 text-white/80 border border-white/10">
+                      <div className="absolute bottom-2.5 left-3 pointer-events-none z-[3]">
+                        <span className="px-2 py-0.5 text-[9px] font-mono uppercase rounded bg-black/75 text-white/85 border border-white/15">
                           {project.categoryLabel}
                         </span>
                       </div>

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PageTab, Project } from './types';
-import { PROJECTS_LIST, FLAGSHIP_PROJECT } from './data/projectsData';
 import { Navbar } from './components/Navbar';
 import { AboutAndTeamView } from './components/AboutAndTeamView';
 import { PublicationsAndProjectsView } from './components/PublicationsAndProjectsView';
@@ -9,25 +8,56 @@ import { ContactView } from './components/ContactView';
 import { Footer } from './components/Footer';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
 import { TraineeModal } from './components/TraineeModal';
+import { AdminPortal } from './components/admin/AdminPortal';
+
+function isAdminPath(pathname: string): boolean {
+  return pathname === '/admin' || pathname.startsWith('/admin/');
+}
 
 export default function App() {
+  const [isAdminRoute, setIsAdminRoute] = useState<boolean>(() =>
+    typeof window !== 'undefined' ? isAdminPath(window.location.pathname) : false
+  );
   const [currentTab, setCurrentTab] = useState<PageTab>('equipe-sobre');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isTraineeModalOpen, setIsTraineeModalOpen] = useState(false);
 
-  const handleSelectProject = (project: Project) => {
-    setSelectedProject(project);
+  useEffect(() => {
+    const handlePopState = () => {
+      setIsAdminRoute(isAdminPath(window.location.pathname));
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateToAdmin = () => {
+    if (!isAdminPath(window.location.pathname)) {
+      window.history.pushState({}, '', '/admin');
+    }
+    setIsAdminRoute(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSelectProjectById = (id: string) => {
-    const found = PROJECTS_LIST.find((p) => p.id === id) || FLAGSHIP_PROJECT;
-    setSelectedProject(found);
+  const navigateToPublicSite = () => {
+    if (isAdminPath(window.location.pathname)) {
+      window.history.pushState({}, '', '/');
+    }
+    setIsAdminRoute(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectProject = (project: Project) => {
+    setSelectedProject(project);
   };
 
   const handleNavigateTab = (tab: PageTab) => {
     setCurrentTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  if (isAdminRoute) {
+    return <AdminPortal onBackToSite={navigateToPublicSite} />;
+  }
 
   return (
     <div className="bg-[#070510] bg-gradient-to-b from-[#090514] via-[#0b081e] via-[#070918] to-[#06040e] text-[#F3F4F6] min-h-screen flex flex-col selection:bg-[#7C3AED] selection:text-white relative overflow-x-hidden">
@@ -86,6 +116,7 @@ export default function App() {
       {/* Complete Footer */}
       <Footer
         onNavigateTab={handleNavigateTab}
+        onNavigateAdmin={navigateToAdmin}
       />
 
       {/* Individual Project Case Study Detail Modal */}
